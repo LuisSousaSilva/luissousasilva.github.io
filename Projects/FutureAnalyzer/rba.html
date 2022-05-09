@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="PortfolYou">
+	<meta name="keywords" content="etf, mutual fund, analytics, data, dashboard, web, app, portfolio, tracker">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com/">
+	<link rel="shortcut icon" href="portfolio_files/icon-48x48.png">
+
+	<title>Future Proof</title>
+
+	<!-- MDB -->
+	<link rel="stylesheet" href="rba_files/mdb.css" type="text/css">
+
+	<link href="rba_files/app.css" rel="stylesheet" type="text/css">
+
+	<link href="rba_files/css2.css" rel="stylesheet">
+
+	<!-- <link rel="stylesheet" href="./static/css/mdb.min.css" rel="stylesheet" type="text/css" /> -->
+
+	<!-- Plotly -->
+	<script src="rba_files/plotly-latest.js"></script><style id="plotly.js-style-global"></style>
+	<script src="rba_files/d3.js"></script>
+
+
+    <style type="text/css">
+
+      table {
+        border: 1px solid rgba(27, 50, 153, 0);
+    }
+
+        td {
+        padding-left: 3rem;
+        padding-top: 1.5rem;
+        border-bottom: 1px solid #c9d0dd;
+        }
+
+        th {
+        padding-top: 1.5rem;
+        border-bottom: 1px solid #c9d0dd;
+        }
+
+    </style>
+
+<style id="plotly.js-style-modebar-235d7d"></style><style id="plotly.js-style-modebar-8c78f4"></style><style type="text/css">.apexcharts-canvas {
+  position: relative;
+  user-select: none;
+  /* cannot give overflow: hidden as it will crop tooltips which overflow outside chart area */
+}
+
+
+/* scrollbar is not visible by default for legend, hence forcing the visibility */
+.apexcharts-canvas ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 6px;
+}
+
+.apexcharts-canvas ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+
+.apexcharts-inner {
+  position: relative;
+}
+
+.apexcharts-text tspan {
+  font-family: inherit;
+}
+
+.legend-mouseover-inactive {
+  transition: 0.15s ease all;
+  opacity: 0.20;
+}
+
+.apexcharts-series-collapsed {
+  opacity: 0;
+}
+
+.apexcharts-tooltip {
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px -4px #999;
+  cursor: default;
+  font-size: 14px;
+  left: 62px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 12;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-tooltip.apexcharts-active {
+  opacity: 1;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-tooltip.apexcharts-theme-light {
+  border: 1px solid #e3e3e3;
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.apexcharts-tooltip.apexcharts-theme-dark {
+  color: #fff;
+  background: rgba(30, 30, 30, 0.8);
+}
+
+.apexcharts-tooltip * {
+  font-family: inherit;
+}
+
+
+.apexcharts-tooltip-title {
+  padding: 6px;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+  background: #ECEFF1;
+  border-bottom: 1px solid #ddd;
+}
+
+.apexcharts-tooltip.apexcharts-theme-dark .apexcharts-tooltip-title {
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid #333;
+}
+
+.apexcharts-tooltip-text-value,
+.apexcharts-tooltip-text-z-value {
+  display: inline-block;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.apexcharts-tooltip-text-z-label:empty,
+.apexcharts-tooltip-text-z-value:empty {
+  display: none;
+}
+
+.apexcharts-tooltip-text-value,
+.apexcharts-tooltip-text-z-value {
+  font-weight: 600;
+}
+
+.apexcharts-tooltip-marker {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  top: 0px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.apexcharts-tooltip-series-group {
+  padding: 0 10px;
+  display: none;
+  text-align: left;
+  justify-content: left;
+  align-items: center;
+}
+
+.apexcharts-tooltip-series-group.apexcharts-active .apexcharts-tooltip-marker {
+  opacity: 1;
+}
+
+.apexcharts-tooltip-series-group.apexcharts-active,
+.apexcharts-tooltip-series-group:last-child {
+  padding-bottom: 4px;
+}
+
+.apexcharts-tooltip-series-group-hidden {
+  opacity: 0;
+  height: 0;
+  line-height: 0;
+  padding: 0 !important;
+}
+
+.apexcharts-tooltip-y-group {
+  padding: 6px 0 5px;
+}
+
+.apexcharts-tooltip-box, .apexcharts-custom-tooltip {
+  padding: 4px 8px;
+}
+
+.apexcharts-tooltip-boxPlot {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.apexcharts-tooltip-box>div {
+  margin: 4px 0;
+}
+
+.apexcharts-tooltip-box span.value {
+  font-weight: bold;
+}
+
+.apexcharts-tooltip-rangebar {
+  padding: 5px 8px;
+}
+
+.apexcharts-tooltip-rangebar .category {
+  font-weight: 600;
+  color: #777;
+}
+
+.apexcharts-tooltip-rangebar .series-name {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.apexcharts-xaxistooltip {
+  opacity: 0;
+  padding: 9px 10px;
+  pointer-events: none;
+  color: #373d3f;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+  background: #ECEFF1;
+  border: 1px solid #90A4AE;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-xaxistooltip.apexcharts-theme-dark {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+.apexcharts-xaxistooltip:after,
+.apexcharts-xaxistooltip:before {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.apexcharts-xaxistooltip:after {
+  border-color: rgba(236, 239, 241, 0);
+  border-width: 6px;
+  margin-left: -6px;
+}
+
+.apexcharts-xaxistooltip:before {
+  border-color: rgba(144, 164, 174, 0);
+  border-width: 7px;
+  margin-left: -7px;
+}
+
+.apexcharts-xaxistooltip-bottom:after,
+.apexcharts-xaxistooltip-bottom:before {
+  bottom: 100%;
+}
+
+.apexcharts-xaxistooltip-top:after,
+.apexcharts-xaxistooltip-top:before {
+  top: 100%;
+}
+
+.apexcharts-xaxistooltip-bottom:after {
+  border-bottom-color: #ECEFF1;
+}
+
+.apexcharts-xaxistooltip-bottom:before {
+  border-bottom-color: #90A4AE;
+}
+
+.apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:after {
+  border-bottom-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:before {
+  border-bottom-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-xaxistooltip-top:after {
+  border-top-color: #ECEFF1
+}
+
+.apexcharts-xaxistooltip-top:before {
+  border-top-color: #90A4AE;
+}
+
+.apexcharts-xaxistooltip-top.apexcharts-theme-dark:after {
+  border-top-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-xaxistooltip-top.apexcharts-theme-dark:before {
+  border-top-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-xaxistooltip.apexcharts-active {
+  opacity: 1;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-yaxistooltip {
+  opacity: 0;
+  padding: 4px 10px;
+  pointer-events: none;
+  color: #373d3f;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+  background: #ECEFF1;
+  border: 1px solid #90A4AE;
+}
+
+.apexcharts-yaxistooltip.apexcharts-theme-dark {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+.apexcharts-yaxistooltip:after,
+.apexcharts-yaxistooltip:before {
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.apexcharts-yaxistooltip:after {
+  border-color: rgba(236, 239, 241, 0);
+  border-width: 6px;
+  margin-top: -6px;
+}
+
+.apexcharts-yaxistooltip:before {
+  border-color: rgba(144, 164, 174, 0);
+  border-width: 7px;
+  margin-top: -7px;
+}
+
+.apexcharts-yaxistooltip-left:after,
+.apexcharts-yaxistooltip-left:before {
+  left: 100%;
+}
+
+.apexcharts-yaxistooltip-right:after,
+.apexcharts-yaxistooltip-right:before {
+  right: 100%;
+}
+
+.apexcharts-yaxistooltip-left:after {
+  border-left-color: #ECEFF1;
+}
+
+.apexcharts-yaxistooltip-left:before {
+  border-left-color: #90A4AE;
+}
+
+.apexcharts-yaxistooltip-left.apexcharts-theme-dark:after {
+  border-left-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-yaxistooltip-left.apexcharts-theme-dark:before {
+  border-left-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-yaxistooltip-right:after {
+  border-right-color: #ECEFF1;
+}
+
+.apexcharts-yaxistooltip-right:before {
+  border-right-color: #90A4AE;
+}
+
+.apexcharts-yaxistooltip-right.apexcharts-theme-dark:after {
+  border-right-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-yaxistooltip-right.apexcharts-theme-dark:before {
+  border-right-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-yaxistooltip.apexcharts-active {
+  opacity: 1;
+}
+
+.apexcharts-yaxistooltip-hidden {
+  display: none;
+}
+
+.apexcharts-xcrosshairs,
+.apexcharts-ycrosshairs {
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-xcrosshairs.apexcharts-active,
+.apexcharts-ycrosshairs.apexcharts-active {
+  opacity: 1;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-ycrosshairs-hidden {
+  opacity: 0;
+}
+
+.apexcharts-selection-rect {
+  cursor: move;
+}
+
+.svg_select_boundingRect, .svg_select_points_rot {
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.apexcharts-selection-rect + g .svg_select_boundingRect,
+.apexcharts-selection-rect + g .svg_select_points_rot {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.apexcharts-selection-rect + g .svg_select_points_l,
+.apexcharts-selection-rect + g .svg_select_points_r {
+  cursor: ew-resize;
+  opacity: 1;
+  visibility: visible;
+}
+
+.svg_select_points {
+  fill: #efefef;
+  stroke: #333;
+  rx: 2;
+}
+
+.apexcharts-svg.apexcharts-zoomable.hovering-zoom {
+  cursor: crosshair
+}
+
+.apexcharts-svg.apexcharts-zoomable.hovering-pan {
+  cursor: move
+}
+
+.apexcharts-zoom-icon,
+.apexcharts-zoomin-icon,
+.apexcharts-zoomout-icon,
+.apexcharts-reset-icon,
+.apexcharts-pan-icon,
+.apexcharts-selection-icon,
+.apexcharts-menu-icon,
+.apexcharts-toolbar-custom-icon {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  line-height: 24px;
+  color: #6E8192;
+  text-align: center;
+}
+
+.apexcharts-zoom-icon svg,
+.apexcharts-zoomin-icon svg,
+.apexcharts-zoomout-icon svg,
+.apexcharts-reset-icon svg,
+.apexcharts-menu-icon svg {
+  fill: #6E8192;
+}
+
+.apexcharts-selection-icon svg {
+  fill: #444;
+  transform: scale(0.76)
+}
+
+.apexcharts-theme-dark .apexcharts-zoom-icon svg,
+.apexcharts-theme-dark .apexcharts-zoomin-icon svg,
+.apexcharts-theme-dark .apexcharts-zoomout-icon svg,
+.apexcharts-theme-dark .apexcharts-reset-icon svg,
+.apexcharts-theme-dark .apexcharts-pan-icon svg,
+.apexcharts-theme-dark .apexcharts-selection-icon svg,
+.apexcharts-theme-dark .apexcharts-menu-icon svg,
+.apexcharts-theme-dark .apexcharts-toolbar-custom-icon svg {
+  fill: #f3f4f5;
+}
+
+.apexcharts-canvas .apexcharts-zoom-icon.apexcharts-selected svg,
+.apexcharts-canvas .apexcharts-selection-icon.apexcharts-selected svg,
+.apexcharts-canvas .apexcharts-reset-zoom-icon.apexcharts-selected svg {
+  fill: #008FFB;
+}
+
+.apexcharts-theme-light .apexcharts-selection-icon:not(.apexcharts-selected):hover svg,
+.apexcharts-theme-light .apexcharts-zoom-icon:not(.apexcharts-selected):hover svg,
+.apexcharts-theme-light .apexcharts-zoomin-icon:hover svg,
+.apexcharts-theme-light .apexcharts-zoomout-icon:hover svg,
+.apexcharts-theme-light .apexcharts-reset-icon:hover svg,
+.apexcharts-theme-light .apexcharts-menu-icon:hover svg {
+  fill: #333;
+}
+
+.apexcharts-selection-icon,
+.apexcharts-menu-icon {
+  position: relative;
+}
+
+.apexcharts-reset-icon {
+  margin-left: 5px;
+}
+
+.apexcharts-zoom-icon,
+.apexcharts-reset-icon,
+.apexcharts-menu-icon {
+  transform: scale(0.85);
+}
+
+.apexcharts-zoomin-icon,
+.apexcharts-zoomout-icon {
+  transform: scale(0.7)
+}
+
+.apexcharts-zoomout-icon {
+  margin-right: 3px;
+}
+
+.apexcharts-pan-icon {
+  transform: scale(0.62);
+  position: relative;
+  left: 1px;
+  top: 0px;
+}
+
+.apexcharts-pan-icon svg {
+  fill: #fff;
+  stroke: #6E8192;
+  stroke-width: 2;
+}
+
+.apexcharts-pan-icon.apexcharts-selected svg {
+  stroke: #008FFB;
+}
+
+.apexcharts-pan-icon:not(.apexcharts-selected):hover svg {
+  stroke: #333;
+}
+
+.apexcharts-toolbar {
+  position: absolute;
+  z-index: 11;
+  max-width: 176px;
+  text-align: right;
+  border-radius: 3px;
+  padding: 0px 6px 2px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.apexcharts-menu {
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 3px;
+  right: 10px;
+  opacity: 0;
+  min-width: 110px;
+  transition: 0.15s ease all;
+  pointer-events: none;
+}
+
+.apexcharts-menu.apexcharts-menu-open {
+  opacity: 1;
+  pointer-events: all;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-menu-item {
+  padding: 6px 7px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.apexcharts-theme-light .apexcharts-menu-item:hover {
+  background: #eee;
+}
+
+.apexcharts-theme-dark .apexcharts-menu {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .apexcharts-canvas:hover .apexcharts-toolbar {
+    opacity: 1;
+  }
+}
+
+.apexcharts-datalabel.apexcharts-element-hidden {
+  opacity: 0;
+}
+
+.apexcharts-pie-label,
+.apexcharts-datalabels,
+.apexcharts-datalabel,
+.apexcharts-datalabel-label,
+.apexcharts-datalabel-value {
+  cursor: default;
+  pointer-events: none;
+}
+
+.apexcharts-pie-label-delay {
+  opacity: 0;
+  animation-name: opaque;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+.apexcharts-canvas .apexcharts-element-hidden {
+  opacity: 0;
+}
+
+.apexcharts-hide .apexcharts-series-points {
+  opacity: 0;
+}
+
+.apexcharts-gridline,
+.apexcharts-annotation-rect,
+.apexcharts-tooltip .apexcharts-marker,
+.apexcharts-area-series .apexcharts-area,
+.apexcharts-line,
+.apexcharts-zoom-rect,
+.apexcharts-toolbar svg,
+.apexcharts-area-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+.apexcharts-line-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+.apexcharts-radar-series path,
+.apexcharts-radar-series polygon {
+  pointer-events: none;
+}
+
+
+/* markers */
+
+.apexcharts-marker {
+  transition: 0.15s ease all;
+}
+
+@keyframes opaque {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+/* Resize generated styles */
+
+@keyframes resizeanim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.resize-triggers {
+  animation: 1ms resizeanim;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.resize-triggers,
+.resize-triggers>div,
+.contract-trigger:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.resize-triggers>div {
+  background: #eee;
+  overflow: auto;
+}
+
+.contract-trigger:before {
+  width: 200%;
+  height: 200%;
+}</style><style>INPUT:-webkit-autofill,SELECT:-webkit-autofill,TEXTAREA:-webkit-autofill{animation-name:onautofillstart}INPUT:not(:-webkit-autofill),SELECT:not(:-webkit-autofill),TEXTAREA:not(:-webkit-autofill){animation-name:onautofillcancel}@keyframes onautofillstart{from{}}@keyframes onautofillcancel{from{}}
+</style></head>
+<!--
+  HOW TO USE: 
+  data-theme: default (default), dark, light
+  data-layout: fluid (default), boxed
+  data-sidebar: left (default), right
+-->
+
+<body data-theme="light" data-layout="fluid" data-sidebar="left">
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar">
+			<div class="sidebar-content js-simplebar" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">
+				<a class="sidebar-brand" href="https://www.futureproof.pt/">
+                    <img src="rba_files/logo-future-proof.svg" alt="">
+				</a>
+
+				<ul class="sidebar-nav">
+
+					<li class="sidebar-header">
+						Dashboards
+					</li>
+					<li class="sidebar-item">
+						<a data-bs-target="#Dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up align-middle"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg> <span class="align-middle">Benchmarks</span>
+						</a>
+						<ul id="Dashboards" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+							<li class="sidebar-item"><a class="sidebar-link" href="./portfolio.html">Portfolio</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="./benchmarks.html">Benchmarks</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="./activos.html">ETFs</a></li>
+							
+						</ul>
+					</li>
+
+					<li class="sidebar-item active">
+						<a data-bs-target="#Optimização" data-bs-toggle="collapse" class="sidebar-link collapsed">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cpu align-middle"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg> <span class="align-middle">Optimização</span>
+						</a>
+						<ul id="Optimização" class="sidebar-dropdown list-unstyled collapse show" data-bs-parent="#sidebar">
+							<li class="sidebar-item"><a class="sidebar-link" href="./mvo.html">MVO</a></li>
+							<li class="sidebar-item active"><a class="sidebar-link" href="./rba.html">Return-Based Analysis
+								</a></li>
+						</ul>
+					</li>
+
+					<li class="sidebar-item">
+						<a data-bs-target="#Simulação" data-bs-toggle="collapse" class="sidebar-link collapsed">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target align-middle"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span class="align-middle">Simulação</span>
+						</a>
+						<ul id="Simulação" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+							<li class="sidebar-item"><a class="sidebar-link" href="./mc.html">Monte-Carlo</a></li>
+							
+						</ul>
+					</li>
+
+				</ul>
+				
+				
+
+
+			</div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 977px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div></div>
+		</nav>
+
+		<div class="main">
+
+
+			<main class="content">
+
+				
+
+
+						<!-- Container for demo purpose -->
+<div class="container-fluid" id="content">
+
+  <div class="row ">
+    <div class="col-auto d-none d-sm-block align-self-center" style="padding-left:3rem">
+      <h3><strong>Future Analyzer</strong> Optimização</h3>
+      <br>
+    </div>
+
+    <div class="row">
+        <div class="d-flex justify-content-around js-plotly-plot" id="portfolios_2fundos_chart" type="text/javascript" style="height: 475px; width: 60vw;" "="">
+            <div class="plot-container plotly"><div class="user-select-none svg-container" style="position: relative; width: 1152px; height: 475px;"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1152" height="475" style="background: rgb(247, 247, 252) none repeat scroll 0% 0%;"><defs id="defs-235d7d"><g class="clips"><clipPath id="clip235d7dxyplot" class="plotclip"><rect width="942" height="295"></rect></clipPath><clipPath class="axesclip" id="clip235d7dx"><rect x="80" y="0" width="942" height="475"></rect></clipPath><clipPath class="axesclip" id="clip235d7dy"><rect x="0" y="100" width="1152" height="295"></rect></clipPath><clipPath class="axesclip" id="clip235d7dxy"><rect x="80" y="100" width="942" height="295"></rect></clipPath></g><g class="gradients"></g></defs><g class="bglayer"></g><g class="draglayer cursor-crosshair"><g class="xy"><rect class="nsewdrag drag" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="80" y="100" width="942" height="295"></rect><rect class="nwdrag drag cursor-nw-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="60" y="80" width="20" height="20"></rect><rect class="nedrag drag cursor-ne-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="1022" y="80" width="20" height="20"></rect><rect class="swdrag drag cursor-sw-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="60" y="395" width="20" height="20"></rect><rect class="sedrag drag cursor-se-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="1022" y="395" width="20" height="20"></rect><rect class="ewdrag drag cursor-ew-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="174.2" y="395.5" width="753.6" height="20"></rect><rect class="wdrag drag cursor-w-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="80" y="395.5" width="94.2" height="20"></rect><rect class="edrag drag cursor-e-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="927.8000000000001" y="395.5" width="94.2" height="20"></rect><rect class="nsdrag drag cursor-ns-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="129.5" width="20" height="236"></rect><rect class="sdrag drag cursor-s-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="365.5" width="20" height="29.5"></rect><rect class="ndrag drag cursor-n-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="100" width="20" height="29.5"></rect></g></g><g class="layer-below"><g class="imagelayer"></g><g class="shapelayer"></g></g><g class="cartesianlayer"><g class="subplot xy"><g class="layer-subplot"><g class="shapelayer"></g><g class="imagelayer"></g></g><g class="gridlayer"><g class="x"><path class="xgrid crisp" transform="translate(262.31,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(494.94,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(727.58,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(960.21,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path></g><g class="y"><path class="ygrid crisp" transform="translate(0,360.17)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,322.73)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,285.28999999999996)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,247.84)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,210.4)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,172.95999999999998)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,135.52)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path></g></g><g class="zerolinelayer"></g><path class="xlines-below"></path><path class="ylines-below"></path><g class="overlines-below"></g><g class="xaxislayer-below"></g><g class="yaxislayer-below"></g><g class="overaxes-below"></g><g class="plot" transform="translate(80,100)" clip-path="url('#clip235d7dxyplot')"><g class="scatterlayer mlayer"><g class="trace scatter traceff8188" style="stroke-miterlimit: 2; opacity: 1;"><g class="fills"></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(65, 105, 225); stroke-opacity: 1; stroke-width: 1.3px; opacity: 1;" d="M0,260.17L3.57,263.55L7.52,264.64L11.34,261.71L15.29,260.03L23.06,263.06L27.01,266.5L30.83,269.96L34.78,268.29L38.6,265.99L42.55,265.68L50.07,265.84L54.02,264.52L57.84,267.11L61.79,268.4L65.61,272.69L69.56,275.22L73.51,274.77L77.33,278.32L85.1,274.6L89.05,277.4L93,279.22L96.57,279.73L100.52,280.25L104.34,277.94L108.29,277.47L112.11,276.02L120.01,273.08L123.83,274.81L127.78,272.63L131.6,273.22L135.55,272.6L139.5,271.19L147.15,269.95L150.97,270.11L154.92,270.55L158.74,269.47L162.69,270.27L166.64,270.1L178.23,269.57L182.18,268.78L189.7,267.33L193.65,267.23L197.47,267.61L201.42,264.62L209.19,261.78L213.14,261.81L216.96,259.7L220.91,260.8L224.73,258.23L228.68,256.93L240.15,255.31L243.97,255.97L247.92,258.65L251.74,258.5L255.69,257.83L259.64,256.34L267.41,253.46L271.24,253.98L279.13,251.47L282.7,252.3L290.47,250.75L294.42,248.68L298.24,249.47L302.19,251.17L313.92,249.42L317.74,252.12L321.69,252.54L325.64,256.72L329.33,258.07L333.28,260.44L337.1,257.42L341.05,256.85L344.87,261.36L348.82,261.74L352.77,259.44L356.59,263.14L360.54,267.74L364.37,269.33L372.26,271.23L375.83,275.08L379.78,273.82L383.6,269.37L391.37,268.01L395.32,264.52L403.1,261.75L407.04,263L410.87,261.67L414.82,258.73L418.77,258.95L422.33,257.23L426.28,253.63L430.1,252.52L437.88,254.89L441.83,253.82L445.77,254.02L449.6,253.16L453.55,252.18L457.37,250.11L461.32,247.9L465.27,247.96L468.83,246.37L472.78,248.46L476.61,248.32L480.56,247.39L484.38,248.78L488.33,248.9L492.28,252.37L496.1,253.13L500.05,250.14L503.87,249.76L515.46,243.06L519.41,242.07L523.23,242.19L527.18,243.18L531.01,241.81L534.96,238.7L542.73,237.98L546.68,238.78L558.4,236.61L561.96,233.85L565.91,230.9L569.74,230.21L573.68,229.51L577.51,231.94L581.46,229.73L585.41,230.88L589.23,229.02L593.18,226.25L600.95,224.62L604.9,225.17L608.47,223.22L612.41,222.92L616.24,222.34L620.19,219.34L627.96,217.51L631.91,214.09L639.68,211.62L643.5,209.19L647.45,207.83L651.4,202.63L654.97,197.34L658.92,194.53L662.74,196.58L666.69,194.44L670.51,198.69L674.46,195.85L678.41,203.37L682.23,205.97L686.18,198.32L690,194.64L697.9,203.24L701.6,203.74L705.54,201.92L709.37,201L713.32,197.93L717.14,197.81L721.09,194.53L725.04,194.18L732.81,194.71L736.63,191.34L740.58,188.5L744.53,188.81L748.1,184.17L752.05,183.87L755.87,183.91L759.82,184.78L767.59,186.84L771.54,187.11L775.36,184.78L779.31,181.35L783.13,181.53L787.08,180.89L791.03,179.92L794.6,182.23L798.55,184.85L802.37,182.36L806.32,178.22L810.14,178.32L818.04,173.53L821.86,173.09L825.81,178.73L829.63,177.36L833.58,185.52L837.53,178.04L848.87,166.44L852.82,171.74L856.64,166.49L860.59,163.05L864.54,163L868.36,159.8L872.31,159.78L876.13,155.23L884.03,152.2L887.73,160.41L891.68,175.73L895.5,164.34L899.45,160.84L903.27,158.78L907.22,158.65L911.17,153.23L914.99,154.77L918.94,157.54L922.76,146.39L926.71,143.96L930.66,144.73L934.23,142.6L938.18,134.53L942,131.49"></path></g><g class="points"></g><g class="text"></g></g><g class="trace scatter trace286918" style="stroke-miterlimit: 2; opacity: 1;"><g class="fills"></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(105, 105, 105); stroke-opacity: 1; stroke-width: 1.3px; opacity: 1;" d="M0,260.17L7.52,263.5L11.34,261.47L15.29,258.63L19.11,258.86L27.01,263.84L30.83,268.22L38.6,262.72L42.55,261.25L46.5,259.22L50.07,258.47L54.02,256.65L57.84,257.67L61.79,259.25L65.61,263.81L69.56,267L73.51,266.58L77.33,269.44L81.28,268.12L85.1,266.55L89.05,268.97L96.57,270.57L100.52,271.99L112.11,266.82L116.06,264.58L120.01,260.84L123.83,262.04L127.78,259.19L131.6,259.87L135.55,259.31L139.5,257.25L147.15,254.56L150.97,255.88L154.92,257.7L158.74,256.63L162.69,257.23L166.64,256.33L182.18,252.48L186.13,250.88L189.7,249.35L193.65,250.04L197.47,250.54L201.42,246.83L205.24,243.32L209.19,240.91L213.14,241.12L216.96,236.5L220.91,238.44L224.73,233.79L232.63,226.52L236.2,225.12L240.15,225.07L243.97,223.31L247.92,227.4L251.74,229.76L259.64,226.75L263.46,226.16L275.19,220.74L279.13,219.39L286.65,218.38L290.47,216.9L294.42,214.14L298.24,213.47L306.14,213.82L309.97,210.39L313.92,205.27L317.74,210.5L321.69,210.86L325.64,216.14L329.33,214.85L333.28,219.57L337.1,216.71L341.05,216.38L344.87,223.09L348.82,222.68L352.77,222.48L356.59,228.07L360.54,234.36L364.37,236.85L368.32,236.89L372.26,236.06L375.83,237.65L379.78,234.66L383.6,227.1L387.55,223.79L391.37,222.96L395.32,216.74L399.27,215.82L403.1,211.17L407.04,212.39L410.87,209.63L414.82,202.95L418.77,203.56L422.33,200.45L426.28,193.47L430.1,189.78L434.05,188.29L445.77,188.54L449.6,185.19L453.55,184.24L457.37,179.56L461.32,174.35L465.27,177.48L476.61,177.33L480.56,175.3L484.38,177.58L488.33,176.57L496.1,182.06L500.05,178.56L503.87,178.75L507.82,175.72L511.77,167.7L515.46,163.64L519.41,165.28L523.23,165.55L527.18,168.68L531.01,166.83L534.96,161.02L538.9,161.56L542.73,157.85L546.68,158.88L554.45,156.42L558.4,156.58L565.91,150.12L569.74,151.89L573.68,153.36L577.51,160.39L581.46,159.17L585.41,159.78L593.18,152.58L597,152.61L600.95,154.72L604.9,155.34L608.47,151.77L612.41,149.65L616.24,150.52L620.19,145.91L627.96,139.46L631.91,134.44L635.73,136.91L639.68,133.81L643.5,133.29L647.45,130.69L651.4,118.24L654.97,111.59L658.92,106.18L662.74,106.21L666.69,106.92L670.51,113.99L674.46,116.3L678.41,128.91L682.23,131.89L686.18,121.4L690,117.97L693.95,124.77L697.9,130.77L701.6,128.63L705.54,121.4L709.37,122L717.14,115.64L721.09,107.45L725.04,106.02L728.86,105.96L732.81,107.17L736.63,104.65L740.58,104.32L744.53,102.15L748.1,94.25L752.05,93.08L755.87,91.76L759.82,94.81L767.59,96.3L771.54,95.33L775.36,92.5L779.31,86.55L783.13,87.91L787.08,86.52L791.03,83.11L794.6,86.98L798.55,89.7L802.37,86.26L806.32,81.63L810.14,84.48L814.09,83.71L818.04,83.81L821.86,85.29L825.81,94L829.63,89.67L833.58,97.13L837.53,84.53L841.1,79.11L848.87,71.11L852.82,79.82L856.64,70.87L860.59,65.14L864.54,64.61L868.36,59.54L872.31,59.21L876.13,55.92L880.08,51.59L884.03,50.1L887.73,56.79L891.68,82.53L895.5,64.52L899.45,61.43L911.17,45.25L914.99,46.46L918.94,45.02L922.76,32.94L930.66,23.67L934.23,21.92L938.18,17.02L942,14.75"></path></g><g class="points"></g><g class="text"></g></g></g></g><g class="overplot"></g><path class="xlines-above crisp" style="fill: none;" d="M0,0"></path><path class="ylines-above crisp" style="fill: none;" d="M0,0"></path><g class="overlines-above"></g><g class="xaxislayer-above"><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2005" data-math="N" transform="translate(262.31,0)">2005</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2010" data-math="N" transform="translate(494.94,0)">2010</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2015" data-math="N" transform="translate(727.58,0)">2015</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2020" data-math="N" transform="translate(960.21,0)">2020</text></g></g><g class="yaxislayer-above"><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="100€" data-math="N" transform="translate(0,360.17)">100€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="150€" data-math="N" transform="translate(0,322.73)">150€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="200€" data-math="N" transform="translate(0,285.28999999999996)">200€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="250€" data-math="N" transform="translate(0,247.84)">250€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="300€" data-math="N" transform="translate(0,210.4)">300€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="350€" data-math="N" transform="translate(0,172.95999999999998)">350€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="400€" data-math="N" transform="translate(0,135.52)">400€</text></g></g><g class="overaxes-above"></g></g></g><g class="polarlayer"></g><g class="ternarylayer"></g><g class="geolayer"></g><g class="funnelarealayer"></g><g class="pielayer"></g><g class="treemaplayer"></g><g class="sunburstlayer"></g><g class="glimages"></g></svg><div class="gl-container"></div><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1152" height="475"><defs id="topdefs-235d7d"><g class="clips"></g><clipPath id="legend235d7d"><rect width="99" height="48" x="0" y="0"></rect></clipPath></defs><g class="indicatorlayer"></g><g class="layer-above"><g class="imagelayer"></g><g class="shapelayer"></g></g><g class="infolayer"><g class="legend" pointer-events="all" transform="translate(1040.8400000000001,100)"><rect class="bg" shape-rendering="crispEdges" style="stroke: rgb(68, 68, 68); stroke-opacity: 1; fill: rgb(247, 247, 252); fill-opacity: 1; stroke-width: 0px;" width="99" height="48" x="0" y="0"></rect><g class="scrollbox" transform="" clip-path="url('#legend235d7d')"><g class="groups"><g class="traces" style="opacity: 1;" transform="translate(0,14.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="2 Fundos" data-math="N">2 Fundos</text><g class="layers" style="opacity: 1;"><g class="legendfill"></g><g class="legendlines"><path class="js-line" d="M5,0h30" style="fill: none; stroke: rgb(65, 105, 225); stroke-opacity: 1; stroke-width: 1.3px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="93.25" height="19"></rect></g><g class="traces" style="opacity: 1;" transform="translate(0,33.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="Portfolio" data-math="N">Portfolio</text><g class="layers" style="opacity: 1;"><g class="legendfill"></g><g class="legendlines"><path class="js-line" d="M5,0h30" style="fill: none; stroke: rgb(105, 105, 105); stroke-opacity: 1; stroke-width: 1.3px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="93.25" height="19"></rect></g></g></g><rect class="scrollbar" rx="20" ry="3" width="0" height="0" style="fill: rgb(128, 139, 164); fill-opacity: 1;" x="0" y="0"></rect></g><g class="g-gtitle"><text class="gtitle" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 17px; fill: rgb(42, 63, 95); opacity: 1; font-weight: normal; white-space: pre;" x="576" y="50" text-anchor="middle" dy="0em" data-unformatted="Portfolio vs MVO" data-math="N">Portfolio vs MVO</text></g><g class="g-xtitle"></g><g class="g-ytitle"><text class="ytitle" transform="rotate(-90,25.483203125000003,247.5)" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 14px; fill: rgb(42, 63, 95); opacity: 1; font-weight: normal; white-space: pre;" x="25.483203125000003" y="247.5" text-anchor="middle" data-unformatted="Valorização de cada 100 €uros investidos" data-math="N">Valorização de cada 100 €uros investidos</text></g><g class="annotation" data-index="0" style="opacity: 1;"><g class="annotation-text-g" transform="rotate(0,551,433.875)"><g class="cursor-pointer" transform="translate(549,432)"><rect class="bg" style="stroke-width: 1px; stroke: rgb(0, 0, 0); stroke-opacity: 0; fill: rgb(0, 0, 0); fill-opacity: 0;" x="0.5" y="0.5" width="3" height="3"></rect><text class="annotation-text" style="font-family: Arial; font-size: 12px; fill: rgb(150, 150, 150); fill-opacity: 1; white-space: pre;" text-anchor="middle" data-unformatted="" data-math="N" x="2" y="2"></text></g></g></g></g><g class="menulayer"></g><g class="zoomlayer"></g></svg><div class="modebar-container" style="position: absolute; top: 0px; right: 0px; width: 100%;"><div id="modebar-235d7d" class="modebar modebar--hover ease-bg"><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Download plot as a png" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m500 450c-83 0-150-67-150-150 0-83 67-150 150-150 83 0 150 67 150 150 0 83-67 150-150 150z m400 150h-120c-16 0-34 13-39 29l-31 93c-6 15-23 28-40 28h-340c-16 0-34-13-39-28l-31-94c-6-15-23-28-40-28h-120c-55 0-100-45-100-100v-450c0-55 45-100 100-100h800c55 0 100 45 100 100v450c0 55-45 100-100 100z m-400-550c-138 0-250 112-250 250 0 138 112 250 250 250 138 0 250-112 250-250 0-138-112-250-250-250z m365 380c-19 0-35 16-35 35 0 19 16 35 35 35 19 0 35-16 35-35 0-19-16-35-35-35z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn active" data-title="Zoom" data-attr="dragmode" data-val="zoom" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m1000-25l-250 251c40 63 63 138 63 218 0 224-182 406-407 406-224 0-406-182-406-406s183-406 407-406c80 0 155 22 218 62l250-250 125 125z m-812 250l0 438 437 0 0-438-437 0z m62 375l313 0 0-312-313 0 0 312z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Pan" data-attr="dragmode" data-val="pan" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m1000 350l-187 188 0-125-250 0 0 250 125 0-188 187-187-187 125 0 0-250-250 0 0 125-188-188 186-187 0 125 252 0 0-250-125 0 187-188 188 188-125 0 0 250 250 0 0-126 187 188z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Zoom in" data-attr="zoom" data-val="in" data-toggle="false" data-gravity="n"><svg viewBox="0 0 875 1000" class="icon" height="1em" width="1em"><path d="m1 787l0-875 875 0 0 875-875 0z m687-500l-187 0 0-187-125 0 0 187-188 0 0 125 188 0 0 187 125 0 0-187 187 0 0-125z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Zoom out" data-attr="zoom" data-val="out" data-toggle="false" data-gravity="n"><svg viewBox="0 0 875 1000" class="icon" height="1em" width="1em"><path d="m0 788l0-876 875 0 0 876-875 0z m688-500l-500 0 0 125 500 0 0-125z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Autoscale" data-attr="zoom" data-val="auto" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m250 850l-187 0-63 0 0-62 0-188 63 0 0 188 187 0 0 62z m688 0l-188 0 0-62 188 0 0-188 62 0 0 188 0 62-62 0z m-875-938l0 188-63 0 0-188 0-62 63 0 187 0 0 62-187 0z m875 188l0-188-188 0 0-62 188 0 62 0 0 62 0 188-62 0z m-125 188l-1 0-93-94-156 156 156 156 92-93 2 0 0 250-250 0 0-2 93-92-156-156-156 156 94 92 0 2-250 0 0-250 0 0 93 93 157-156-157-156-93 94 0 0 0-250 250 0 0 0-94 93 156 157 156-157-93-93 0 0 250 0 0 250z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Reset axes" data-attr="zoom" data-val="reset" data-toggle="false" data-gravity="n"><svg viewBox="0 0 928.6 1000" class="icon" height="1em" width="1em"><path d="m786 296v-267q0-15-11-26t-25-10h-214v214h-143v-214h-214q-15 0-25 10t-11 26v267q0 1 0 2t0 2l321 264 321-264q1-1 1-4z m124 39l-34-41q-5-5-12-6h-2q-7 0-12 3l-386 322-386-322q-7-4-13-4-7 2-12 7l-35 41q-4 5-3 13t6 12l401 334q18 15 42 15t43-15l136-114v109q0 8 5 13t13 5h107q8 0 13-5t5-13v-227l122-102q5-5 6-12t-4-13z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Toggle Spike Lines" data-attr="_cartesianSpikesEnabled" data-val="on" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="M512 409c0-57-46-104-103-104-57 0-104 47-104 104 0 57 47 103 104 103 57 0 103-46 103-103z m-327-39l92 0 0 92-92 0z m-185 0l92 0 0 92-92 0z m370-186l92 0 0 93-92 0z m0-184l92 0 0 92-92 0z" transform="matrix(1.5 0 0 -1.5 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Show closest data on hover" data-attr="hovermode" data-val="closest" data-toggle="false" data-gravity="ne"><svg viewBox="0 0 1500 1000" class="icon" height="1em" width="1em"><path d="m375 725l0 0-375-375 375-374 0-1 1125 0 0 750-1125 0z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn active" data-title="Compare data on hover" data-attr="hovermode" data-val="x" data-toggle="false" data-gravity="ne"><svg viewBox="0 0 1125 1000" class="icon" height="1em" width="1em"><path d="m187 786l0 2-187-188 188-187 0 0 937 0 0 373-938 0z m0-499l0 1-187-188 188-188 0 0 937 0 0 376-938-1z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a href="https://plotly.com/" target="_blank" data-title="Produced with Plotly" class="modebar-btn plotlyjsicon modebar-btn--logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 132" height="1em" width="1em"><defs><style>.cls-1 {fill: #3f4f75;} .cls-2 {fill: #80cfbe;} .cls-3 {fill: #fff;}</style></defs><title>plotly-logomark</title><g id="symbol"><rect class="cls-1" width="132" height="132" rx="6" ry="6"></rect><circle class="cls-2" cx="78" cy="54" r="6"></circle><circle class="cls-2" cx="102" cy="30" r="6"></circle><circle class="cls-2" cx="78" cy="30" r="6"></circle><circle class="cls-2" cx="54" cy="30" r="6"></circle><circle class="cls-2" cx="30" cy="30" r="6"></circle><circle class="cls-2" cx="30" cy="54" r="6"></circle><path class="cls-3" d="M30,72a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,30,72Z"></path><path class="cls-3" d="M78,72a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,78,72Z"></path><path class="cls-3" d="M54,48a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,0,0,54,48Z"></path><path class="cls-3" d="M102,48a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,0,0,102,48Z"></path></g></svg></a></div></div></div><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1152" height="475"><g class="hoverlayer"></g></svg></div></div><script>
+                var graphs = {"data": [{"line": {"color": "royalblue", "width": 1.3}, "mode": "lines", "name": "2 Fundos", "x": ["2001-01-31T00:00:00", "2001-02-28T00:00:00", "2001-03-31T00:00:00", "2001-04-30T00:00:00", "2001-05-31T00:00:00", "2001-06-30T00:00:00", "2001-07-31T00:00:00", "2001-08-31T00:00:00", "2001-09-30T00:00:00", "2001-10-31T00:00:00", "2001-11-30T00:00:00", "2001-12-31T00:00:00", "2002-01-31T00:00:00", "2002-02-28T00:00:00", "2002-03-31T00:00:00", "2002-04-30T00:00:00", "2002-05-31T00:00:00", "2002-06-30T00:00:00", "2002-07-31T00:00:00", "2002-08-31T00:00:00", "2002-09-30T00:00:00", "2002-10-31T00:00:00", "2002-11-30T00:00:00", "2002-12-31T00:00:00", "2003-01-31T00:00:00", "2003-02-28T00:00:00", "2003-03-31T00:00:00", "2003-04-30T00:00:00", "2003-05-31T00:00:00", "2003-06-30T00:00:00", "2003-07-31T00:00:00", "2003-08-31T00:00:00", "2003-09-30T00:00:00", "2003-10-31T00:00:00", "2003-11-30T00:00:00", "2003-12-31T00:00:00", "2004-01-31T00:00:00", "2004-02-29T00:00:00", "2004-03-31T00:00:00", "2004-04-30T00:00:00", "2004-05-31T00:00:00", "2004-06-30T00:00:00", "2004-07-31T00:00:00", "2004-08-31T00:00:00", "2004-09-30T00:00:00", "2004-10-31T00:00:00", "2004-11-30T00:00:00", "2004-12-31T00:00:00", "2005-01-31T00:00:00", "2005-02-28T00:00:00", "2005-03-31T00:00:00", "2005-04-30T00:00:00", "2005-05-31T00:00:00", "2005-06-30T00:00:00", "2005-07-31T00:00:00", "2005-08-31T00:00:00", "2005-09-30T00:00:00", "2005-10-31T00:00:00", "2005-11-30T00:00:00", "2005-12-31T00:00:00", "2006-01-31T00:00:00", "2006-02-28T00:00:00", "2006-03-31T00:00:00", "2006-04-30T00:00:00", "2006-05-31T00:00:00", "2006-06-30T00:00:00", "2006-07-31T00:00:00", "2006-08-31T00:00:00", "2006-09-30T00:00:00", "2006-10-31T00:00:00", "2006-11-30T00:00:00", "2006-12-31T00:00:00", "2007-01-31T00:00:00", "2007-02-28T00:00:00", "2007-03-31T00:00:00", "2007-04-30T00:00:00", "2007-05-31T00:00:00", "2007-06-30T00:00:00", "2007-07-31T00:00:00", "2007-08-31T00:00:00", "2007-09-30T00:00:00", "2007-10-31T00:00:00", "2007-11-30T00:00:00", "2007-12-31T00:00:00", "2008-01-31T00:00:00", "2008-02-29T00:00:00", "2008-03-31T00:00:00", "2008-04-30T00:00:00", "2008-05-31T00:00:00", "2008-06-30T00:00:00", "2008-07-31T00:00:00", "2008-08-31T00:00:00", "2008-09-30T00:00:00", "2008-10-31T00:00:00", "2008-11-30T00:00:00", "2008-12-31T00:00:00", "2009-01-31T00:00:00", "2009-02-28T00:00:00", "2009-03-31T00:00:00", "2009-04-30T00:00:00", "2009-05-31T00:00:00", "2009-06-30T00:00:00", "2009-07-31T00:00:00", "2009-08-31T00:00:00", "2009-09-30T00:00:00", "2009-10-31T00:00:00", "2009-11-30T00:00:00", "2009-12-31T00:00:00", "2010-01-31T00:00:00", "2010-02-28T00:00:00", "2010-03-31T00:00:00", "2010-04-30T00:00:00", "2010-05-31T00:00:00", "2010-06-30T00:00:00", "2010-07-31T00:00:00", "2010-08-31T00:00:00", "2010-09-30T00:00:00", "2010-10-31T00:00:00", "2010-11-30T00:00:00", "2010-12-31T00:00:00", "2011-01-31T00:00:00", "2011-02-28T00:00:00", "2011-03-31T00:00:00", "2011-04-30T00:00:00", "2011-05-31T00:00:00", "2011-06-30T00:00:00", "2011-07-31T00:00:00", "2011-08-31T00:00:00", "2011-09-30T00:00:00", "2011-10-31T00:00:00", "2011-11-30T00:00:00", "2011-12-31T00:00:00", "2012-01-31T00:00:00", "2012-02-29T00:00:00", "2012-03-31T00:00:00", "2012-04-30T00:00:00", "2012-05-31T00:00:00", "2012-06-30T00:00:00", "2012-07-31T00:00:00", "2012-08-31T00:00:00", "2012-09-30T00:00:00", "2012-10-31T00:00:00", "2012-11-30T00:00:00", "2012-12-31T00:00:00", "2013-01-31T00:00:00", "2013-02-28T00:00:00", "2013-03-31T00:00:00", "2013-04-30T00:00:00", "2013-05-31T00:00:00", "2013-06-30T00:00:00", "2013-07-31T00:00:00", "2013-08-31T00:00:00", "2013-09-30T00:00:00", "2013-10-31T00:00:00", "2013-11-30T00:00:00", "2013-12-31T00:00:00", "2014-01-31T00:00:00", "2014-02-28T00:00:00", "2014-03-31T00:00:00", "2014-04-30T00:00:00", "2014-05-31T00:00:00", "2014-06-30T00:00:00", "2014-07-31T00:00:00", "2014-08-31T00:00:00", "2014-09-30T00:00:00", "2014-10-31T00:00:00", "2014-11-30T00:00:00", "2014-12-31T00:00:00", "2015-01-31T00:00:00", "2015-02-28T00:00:00", "2015-03-31T00:00:00", "2015-04-30T00:00:00", "2015-05-31T00:00:00", "2015-06-30T00:00:00", "2015-07-31T00:00:00", "2015-08-31T00:00:00", "2015-09-30T00:00:00", "2015-10-31T00:00:00", "2015-11-30T00:00:00", "2015-12-31T00:00:00", "2016-01-31T00:00:00", "2016-02-29T00:00:00", "2016-03-31T00:00:00", "2016-04-30T00:00:00", "2016-05-31T00:00:00", "2016-06-30T00:00:00", "2016-07-31T00:00:00", "2016-08-31T00:00:00", "2016-09-30T00:00:00", "2016-10-31T00:00:00", "2016-11-30T00:00:00", "2016-12-31T00:00:00", "2017-01-31T00:00:00", "2017-02-28T00:00:00", "2017-03-31T00:00:00", "2017-04-30T00:00:00", "2017-05-31T00:00:00", "2017-06-30T00:00:00", "2017-07-31T00:00:00", "2017-08-31T00:00:00", "2017-09-30T00:00:00", "2017-10-31T00:00:00", "2017-11-30T00:00:00", "2017-12-31T00:00:00", "2018-01-31T00:00:00", "2018-02-28T00:00:00", "2018-03-31T00:00:00", "2018-04-30T00:00:00", "2018-05-31T00:00:00", "2018-06-30T00:00:00", "2018-07-31T00:00:00", "2018-08-31T00:00:00", "2018-09-30T00:00:00", "2018-10-31T00:00:00", "2018-11-30T00:00:00", "2018-12-31T00:00:00", "2019-01-31T00:00:00", "2019-02-28T00:00:00", "2019-03-31T00:00:00", "2019-04-30T00:00:00", "2019-05-31T00:00:00", "2019-06-30T00:00:00", "2019-07-31T00:00:00", "2019-08-31T00:00:00", "2019-09-30T00:00:00", "2019-10-31T00:00:00", "2019-11-30T00:00:00", "2019-12-31T00:00:00", "2020-01-31T00:00:00", "2020-02-29T00:00:00", "2020-03-31T00:00:00", "2020-04-30T00:00:00", "2020-05-31T00:00:00", "2020-06-30T00:00:00", "2020-07-31T00:00:00", "2020-08-31T00:00:00", "2020-09-30T00:00:00", "2020-10-31T00:00:00", "2020-11-30T00:00:00", "2020-12-31T00:00:00", "2021-01-31T00:00:00", "2021-02-28T00:00:00", "2021-03-31T00:00:00", "2021-04-30T00:00:00"], "y": [100.0, 95.48, 94.02, 97.94, 100.18, 98.43, 96.14, 91.54, 86.92, 89.15, 92.22, 92.64, 93.0, 92.43, 94.18, 90.73, 89.0, 83.27, 79.9, 80.5, 75.76, 78.55, 80.73, 76.98, 74.56, 73.88, 73.18, 76.26, 76.89, 78.83, 80.29, 82.76, 80.44, 83.36, 82.57, 83.39, 85.28, 86.52, 86.94, 86.72, 86.13, 87.57, 86.51, 86.74, 86.71, 86.96, 87.44, 88.5, 89.83, 90.44, 90.57, 90.06, 94.05, 96.07, 97.85, 97.81, 100.62, 99.16, 102.58, 104.32, 105.22, 106.4, 106.49, 105.6, 102.02, 102.22, 103.12, 105.11, 106.83, 108.96, 108.26, 109.81, 111.62, 110.51, 111.18, 112.57, 115.34, 114.29, 112.01, 112.66, 113.09, 114.35, 110.75, 110.19, 104.6, 102.8, 99.63, 103.67, 104.43, 98.4, 97.9, 100.97, 96.03, 89.89, 87.76, 86.04, 85.22, 80.09, 81.77, 87.71, 88.96, 89.52, 94.18, 96.28, 97.89, 96.21, 97.99, 101.92, 101.62, 103.92, 108.73, 110.21, 109.04, 107.05, 108.48, 108.21, 109.36, 110.66, 113.43, 116.38, 116.3, 118.43, 115.64, 115.82, 117.06, 115.21, 115.05, 110.41, 109.4, 113.39, 113.9, 117.13, 120.64, 122.85, 124.17, 124.01, 122.69, 124.52, 128.67, 128.9, 129.63, 128.56, 129.53, 129.99, 131.46, 135.14, 139.08, 140.0, 140.94, 137.69, 140.64, 139.11, 141.59, 145.3, 146.82, 147.47, 146.74, 149.34, 149.74, 150.52, 154.52, 156.15, 156.96, 161.53, 162.86, 164.83, 168.08, 169.89, 176.84, 183.9, 187.66, 184.91, 187.77, 182.1, 185.89, 175.85, 172.38, 182.59, 187.51, 181.65, 176.02, 175.35, 177.79, 179.02, 183.12, 183.27, 187.66, 188.12, 187.58, 187.42, 191.92, 195.71, 195.29, 201.49, 201.89, 201.84, 200.67, 199.03, 197.93, 197.56, 200.67, 205.26, 205.01, 205.87, 207.17, 204.08, 200.58, 203.9, 209.44, 209.3, 213.11, 215.7, 216.29, 208.76, 210.59, 199.69, 209.68, 214.81, 219.84, 225.17, 218.09, 225.1, 229.7, 229.76, 234.04, 234.06, 240.14, 241.71, 244.18, 233.22, 212.76, 227.97, 232.64, 235.4, 235.57, 242.81, 240.75, 237.05, 251.94, 255.19, 254.16, 257.0, 267.78, 271.84], "type": "scatter"}, {"line": {"color": "dimgrey", "width": 1.3}, "mode": "lines", "name": "Portfolio", "x": ["2001-01-31T00:00:00", "2001-02-28T00:00:00", "2001-03-31T00:00:00", "2001-04-30T00:00:00", "2001-05-31T00:00:00", "2001-06-30T00:00:00", "2001-07-31T00:00:00", "2001-08-31T00:00:00", "2001-09-30T00:00:00", "2001-10-31T00:00:00", "2001-11-30T00:00:00", "2001-12-31T00:00:00", "2002-01-31T00:00:00", "2002-02-28T00:00:00", "2002-03-31T00:00:00", "2002-04-30T00:00:00", "2002-05-31T00:00:00", "2002-06-30T00:00:00", "2002-07-31T00:00:00", "2002-08-31T00:00:00", "2002-09-30T00:00:00", "2002-10-31T00:00:00", "2002-11-30T00:00:00", "2002-12-31T00:00:00", "2003-01-31T00:00:00", "2003-02-28T00:00:00", "2003-03-31T00:00:00", "2003-04-30T00:00:00", "2003-05-31T00:00:00", "2003-06-30T00:00:00", "2003-07-31T00:00:00", "2003-08-31T00:00:00", "2003-09-30T00:00:00", "2003-10-31T00:00:00", "2003-11-30T00:00:00", "2003-12-31T00:00:00", "2004-01-31T00:00:00", "2004-02-29T00:00:00", "2004-03-31T00:00:00", "2004-04-30T00:00:00", "2004-05-31T00:00:00", "2004-06-30T00:00:00", "2004-07-31T00:00:00", "2004-08-31T00:00:00", "2004-09-30T00:00:00", "2004-10-31T00:00:00", "2004-11-30T00:00:00", "2004-12-31T00:00:00", "2005-01-31T00:00:00", "2005-02-28T00:00:00", "2005-03-31T00:00:00", "2005-04-30T00:00:00", "2005-05-31T00:00:00", "2005-06-30T00:00:00", "2005-07-31T00:00:00", "2005-08-31T00:00:00", "2005-09-30T00:00:00", "2005-10-31T00:00:00", "2005-11-30T00:00:00", "2005-12-31T00:00:00", "2006-01-31T00:00:00", "2006-02-28T00:00:00", "2006-03-31T00:00:00", "2006-04-30T00:00:00", "2006-05-31T00:00:00", "2006-06-30T00:00:00", "2006-07-31T00:00:00", "2006-08-31T00:00:00", "2006-09-30T00:00:00", "2006-10-31T00:00:00", "2006-11-30T00:00:00", "2006-12-31T00:00:00", "2007-01-31T00:00:00", "2007-02-28T00:00:00", "2007-03-31T00:00:00", "2007-04-30T00:00:00", "2007-05-31T00:00:00", "2007-06-30T00:00:00", "2007-07-31T00:00:00", "2007-08-31T00:00:00", "2007-09-30T00:00:00", "2007-10-31T00:00:00", "2007-11-30T00:00:00", "2007-12-31T00:00:00", "2008-01-31T00:00:00", "2008-02-29T00:00:00", "2008-03-31T00:00:00", "2008-04-30T00:00:00", "2008-05-31T00:00:00", "2008-06-30T00:00:00", "2008-07-31T00:00:00", "2008-08-31T00:00:00", "2008-09-30T00:00:00", "2008-10-31T00:00:00", "2008-11-30T00:00:00", "2008-12-31T00:00:00", "2009-01-31T00:00:00", "2009-02-28T00:00:00", "2009-03-31T00:00:00", "2009-04-30T00:00:00", "2009-05-31T00:00:00", "2009-06-30T00:00:00", "2009-07-31T00:00:00", "2009-08-31T00:00:00", "2009-09-30T00:00:00", "2009-10-31T00:00:00", "2009-11-30T00:00:00", "2009-12-31T00:00:00", "2010-01-31T00:00:00", "2010-02-28T00:00:00", "2010-03-31T00:00:00", "2010-04-30T00:00:00", "2010-05-31T00:00:00", "2010-06-30T00:00:00", "2010-07-31T00:00:00", "2010-08-31T00:00:00", "2010-09-30T00:00:00", "2010-10-31T00:00:00", "2010-11-30T00:00:00", "2010-12-31T00:00:00", "2011-01-31T00:00:00", "2011-02-28T00:00:00", "2011-03-31T00:00:00", "2011-04-30T00:00:00", "2011-05-31T00:00:00", "2011-06-30T00:00:00", "2011-07-31T00:00:00", "2011-08-31T00:00:00", "2011-09-30T00:00:00", "2011-10-31T00:00:00", "2011-11-30T00:00:00", "2011-12-31T00:00:00", "2012-01-31T00:00:00", "2012-02-29T00:00:00", "2012-03-31T00:00:00", "2012-04-30T00:00:00", "2012-05-31T00:00:00", "2012-06-30T00:00:00", "2012-07-31T00:00:00", "2012-08-31T00:00:00", "2012-09-30T00:00:00", "2012-10-31T00:00:00", "2012-11-30T00:00:00", "2012-12-31T00:00:00", "2013-01-31T00:00:00", "2013-02-28T00:00:00", "2013-03-31T00:00:00", "2013-04-30T00:00:00", "2013-05-31T00:00:00", "2013-06-30T00:00:00", "2013-07-31T00:00:00", "2013-08-31T00:00:00", "2013-09-30T00:00:00", "2013-10-31T00:00:00", "2013-11-30T00:00:00", "2013-12-31T00:00:00", "2014-01-31T00:00:00", "2014-02-28T00:00:00", "2014-03-31T00:00:00", "2014-04-30T00:00:00", "2014-05-31T00:00:00", "2014-06-30T00:00:00", "2014-07-31T00:00:00", "2014-08-31T00:00:00", "2014-09-30T00:00:00", "2014-10-31T00:00:00", "2014-11-30T00:00:00", "2014-12-31T00:00:00", "2015-01-31T00:00:00", "2015-02-28T00:00:00", "2015-03-31T00:00:00", "2015-04-30T00:00:00", "2015-05-31T00:00:00", "2015-06-30T00:00:00", "2015-07-31T00:00:00", "2015-08-31T00:00:00", "2015-09-30T00:00:00", "2015-10-31T00:00:00", "2015-11-30T00:00:00", "2015-12-31T00:00:00", "2016-01-31T00:00:00", "2016-02-29T00:00:00", "2016-03-31T00:00:00", "2016-04-30T00:00:00", "2016-05-31T00:00:00", "2016-06-30T00:00:00", "2016-07-31T00:00:00", "2016-08-31T00:00:00", "2016-09-30T00:00:00", "2016-10-31T00:00:00", "2016-11-30T00:00:00", "2016-12-31T00:00:00", "2017-01-31T00:00:00", "2017-02-28T00:00:00", "2017-03-31T00:00:00", "2017-04-30T00:00:00", "2017-05-31T00:00:00", "2017-06-30T00:00:00", "2017-07-31T00:00:00", "2017-08-31T00:00:00", "2017-09-30T00:00:00", "2017-10-31T00:00:00", "2017-11-30T00:00:00", "2017-12-31T00:00:00", "2018-01-31T00:00:00", "2018-02-28T00:00:00", "2018-03-31T00:00:00", "2018-04-30T00:00:00", "2018-05-31T00:00:00", "2018-06-30T00:00:00", "2018-07-31T00:00:00", "2018-08-31T00:00:00", "2018-09-30T00:00:00", "2018-10-31T00:00:00", "2018-11-30T00:00:00", "2018-12-31T00:00:00", "2019-01-31T00:00:00", "2019-02-28T00:00:00", "2019-03-31T00:00:00", "2019-04-30T00:00:00", "2019-05-31T00:00:00", "2019-06-30T00:00:00", "2019-07-31T00:00:00", "2019-08-31T00:00:00", "2019-09-30T00:00:00", "2019-10-31T00:00:00", "2019-11-30T00:00:00", "2019-12-31T00:00:00", "2020-01-31T00:00:00", "2020-02-29T00:00:00", "2020-03-31T00:00:00", "2020-04-30T00:00:00", "2020-05-31T00:00:00", "2020-06-30T00:00:00", "2020-07-31T00:00:00", "2020-08-31T00:00:00", "2020-09-30T00:00:00", "2020-10-31T00:00:00", "2020-11-30T00:00:00", "2020-12-31T00:00:00", "2021-01-31T00:00:00", "2021-02-28T00:00:00", "2021-03-31T00:00:00", "2021-04-30T00:00:00"], "y": [100.0, 97.49, 95.55, 98.26, 102.05, 101.75, 98.04, 95.1, 89.24, 92.77, 96.59, 98.55, 101.27, 102.27, 104.7, 103.34, 101.23, 95.13, 90.87, 91.43, 87.61, 89.38, 91.48, 88.24, 87.24, 86.11, 84.21, 86.38, 88.05, 91.12, 94.11, 99.1, 97.5, 101.31, 100.4, 101.14, 103.9, 105.62, 107.49, 105.72, 103.3, 104.72, 103.92, 105.13, 106.51, 107.08, 109.33, 110.26, 112.4, 114.44, 113.53, 112.85, 117.81, 122.5, 125.72, 125.44, 131.61, 129.01, 135.23, 140.35, 144.93, 146.8, 146.87, 149.22, 143.76, 140.61, 142.53, 144.62, 145.41, 148.13, 150.42, 152.65, 154.46, 154.85, 155.81, 157.78, 161.47, 162.36, 162.52, 161.89, 166.48, 173.31, 166.33, 165.84, 158.79, 160.52, 154.21, 158.03, 158.47, 149.51, 150.06, 150.33, 142.86, 134.47, 131.14, 131.08, 132.19, 130.07, 134.06, 144.16, 148.58, 149.69, 157.99, 159.22, 165.43, 163.8, 167.49, 176.41, 175.59, 179.75, 189.07, 194.0, 195.99, 195.7, 195.07, 195.65, 200.13, 201.4, 207.64, 214.61, 210.42, 210.62, 210.74, 210.63, 213.34, 210.29, 211.64, 207.5, 204.31, 208.98, 208.73, 212.77, 223.49, 228.9, 226.72, 226.36, 222.17, 224.64, 232.4, 231.69, 236.64, 235.26, 237.3, 238.55, 238.34, 242.89, 246.96, 244.6, 242.63, 233.24, 234.88, 234.06, 239.16, 243.68, 243.64, 240.82, 239.99, 244.76, 247.59, 246.43, 252.58, 256.23, 261.2, 267.9, 264.6, 268.74, 269.43, 272.91, 289.54, 298.41, 305.64, 305.6, 304.65, 295.21, 292.13, 275.29, 271.3, 285.31, 289.89, 280.81, 272.8, 275.66, 285.32, 284.52, 288.91, 293.01, 303.94, 305.85, 305.93, 304.32, 307.69, 308.12, 311.02, 321.57, 323.13, 324.9, 320.82, 319.79, 318.83, 320.13, 323.91, 331.86, 330.04, 331.89, 336.45, 331.28, 327.65, 332.24, 338.42, 334.62, 335.65, 335.52, 333.54, 321.9, 327.69, 317.73, 334.55, 341.79, 347.11, 352.47, 340.84, 352.8, 360.45, 361.15, 367.92, 368.37, 372.76, 378.54, 380.53, 371.6, 337.22, 361.27, 365.4, 372.32, 378.48, 387.01, 385.39, 387.31, 403.45, 409.97, 415.83, 418.17, 424.71, 427.74], "type": "scatter"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmapgl": [{"type": "heatmapgl", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"type": "scatter", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"type": "histogram", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"bgcolor": "#E5ECF6", "angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "ternary": {"bgcolor": "#E5ECF6", "aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "#E5ECF6", "subunitcolor": "white", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "title": {"text": "Portfolio vs MVO", "x": 0.5}, "yaxis": {"tickfont": {"color": "#4D5663"}, "title": {"text": "Valoriza\u00e7\u00e3o de cada 100 \u20acuros investidos"}, "ticksuffix": "\u20ac", "tickprefix": "", "gridcolor": "#E1E5ED", "zerolinecolor": "#E1E5ED", "showgrid": true, "tickformat": ""}, "xaxis": {"tickfont": {"color": "#4D5663"}, "title": {"text": "", "font": {"color": "#4D5663"}}, "gridcolor": "#E1E5ED", "zerolinecolor": "#E1E5ED", "showgrid": true, "tickformat": "", "ticksuffix": "", "tickprefix": ""}, "paper_bgcolor": "#f7f7fc", "plot_bgcolor": "#f7f7fc", "hovermode": "x", "annotations": [{"font": {"color": "rgb(150,150,150)", "family": "Arial", "size": 12}, "showarrow": false, "text": "", "x": 0.5, "xanchor": "center", "xref": "paper", "y": "-0.125", "yanchor": "top", "yref": "paper"}]}};
+                Plotly.plot('portfolios_2fundos_chart',graphs,{});
+            </script>
+          </div>
+    </div>
+
+    <div class="row">
+        <div class="d-flex justify-content-around js-plotly-plot" id="portfolios_2fundos_dd_chart" type="text/javascript" style="height: 475px; width: 60vw;" "="">
+            <div class="plot-container plotly"><div class="user-select-none svg-container" style="position: relative; width: 1152px; height: 475px;"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1152" height="475" style="background: rgb(247, 247, 252) none repeat scroll 0% 0%;"><defs id="defs-8c78f4"><g class="clips"><clipPath id="clip8c78f4xyplot" class="plotclip"><rect width="942" height="295"></rect></clipPath><clipPath class="axesclip" id="clip8c78f4x"><rect x="80" y="0" width="942" height="475"></rect></clipPath><clipPath class="axesclip" id="clip8c78f4y"><rect x="0" y="100" width="1152" height="295"></rect></clipPath><clipPath class="axesclip" id="clip8c78f4xy"><rect x="80" y="100" width="942" height="295"></rect></clipPath></g><g class="gradients"></g></defs><g class="bglayer"></g><g class="draglayer cursor-crosshair"><g class="xy"><rect class="nsewdrag drag" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="80" y="100" width="942" height="295"></rect><rect class="nwdrag drag cursor-nw-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="60" y="80" width="20" height="20"></rect><rect class="nedrag drag cursor-ne-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="1022" y="80" width="20" height="20"></rect><rect class="swdrag drag cursor-sw-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="60" y="395" width="20" height="20"></rect><rect class="sedrag drag cursor-se-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="1022" y="395" width="20" height="20"></rect><rect class="ewdrag drag cursor-ew-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="174.2" y="395.5" width="753.6" height="20"></rect><rect class="wdrag drag cursor-w-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="80" y="395.5" width="94.2" height="20"></rect><rect class="edrag drag cursor-e-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="927.8000000000001" y="395.5" width="94.2" height="20"></rect><rect class="nsdrag drag cursor-ns-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="129.5" width="20" height="236"></rect><rect class="sdrag drag cursor-s-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="365.5" width="20" height="29.5"></rect><rect class="ndrag drag cursor-n-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="100" width="20" height="29.5"></rect></g></g><g class="layer-below"><g class="imagelayer"></g><g class="shapelayer"></g></g><g class="cartesianlayer"><g class="subplot xy"><g class="layer-subplot"><g class="shapelayer"></g><g class="imagelayer"></g></g><g class="gridlayer"><g class="x"><path class="xgrid crisp" transform="translate(262.31,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(494.94,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(727.58,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(960.21,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path></g><g class="y"><path class="ygrid crisp" transform="translate(0,375.38)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,331.95)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,288.51)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,245.07)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,201.63)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,158.19)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path></g></g><g class="zerolinelayer"><path class="yzl zl crisp" transform="translate(0,114.75)" d="M80,0h942" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 2px;"></path></g><path class="xlines-below"></path><path class="ylines-below"></path><g class="overlines-below"></g><g class="xaxislayer-below"></g><g class="yaxislayer-below"></g><g class="overaxes-below"></g><g class="plot" transform="translate(80,100)" clip-path="url('#clip8c78f4xyplot')"><g class="scatterlayer mlayer"><g class="trace scatter tracea0a1e5" style="stroke-miterlimit: 2; opacity: 1;"><g class="fills"></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(65, 105, 225); stroke-opacity: 1; stroke-width: 1.3px; opacity: 1;" d="M0,14.75L3.57,54.02L7.52,66.7L11.34,32.65L15.29,14.75L19.11,29.95L23.06,49.85L30.83,129.78L34.78,110.4L38.6,83.82L42.55,80.17L46.5,77.04L50.07,81.99L54.02,66.79L57.84,96.76L61.79,111.71L65.61,161.4L69.56,190.68L73.51,185.47L77.33,226.56L81.28,202.32L85.1,183.47L89.05,215.96L93,236.9L96.57,242.81L100.52,248.89L104.34,222.22L108.29,216.74L112.11,199.97L116.06,187.29L120.01,165.92L123.83,185.99L127.78,160.62L131.6,167.48L135.55,160.36L139.5,144.02L143.2,133.25L147.15,129.6L150.97,131.51L154.92,136.55L158.74,124.13L162.69,133.34L166.64,131.34L170.46,131.6L174.41,129.43L178.23,125.26L182.18,116.05L186.13,104.5L189.7,99.2L193.65,98.15L197.47,102.58L201.42,67.92L205.24,50.46L209.19,34.99L213.14,35.34L216.96,14.75L220.91,27.35L224.73,14.75L228.68,14.75L240.15,14.75L243.97,21.96L247.92,51.15L251.74,49.59L255.69,42.2L259.64,26.04L263.46,14.75L267.41,14.75L271.24,20.31L275.19,14.75L279.13,14.75L282.7,23.35L286.65,18.14L290.47,14.75L294.42,14.75L298.24,22.66L302.19,39.86L306.14,34.99L309.97,31.78L313.92,22.22L317.74,49.33L321.69,53.58L325.64,95.63L329.33,109.19L333.28,133.08L337.1,102.67L341.05,97.02L344.87,142.37L348.82,146.2L352.77,123L356.59,160.27L360.54,206.49L364.37,222.56L368.32,235.51L372.26,241.68L375.83,280.25L379.78,267.57L383.6,222.91L387.55,213.53L391.37,209.27L395.32,174.17L399.27,158.36L403.1,146.2L407.04,158.88L410.87,145.5L414.82,115.88L418.77,118.14L422.33,100.76L426.28,64.62L430.1,53.41L434.05,62.27L437.88,77.22L441.83,66.44L445.77,68.44L453.55,50.02L457.37,29.17L461.32,14.75L465.27,15.36L468.83,14.75L472.78,35.25L476.61,33.86L480.56,24.83L484.38,38.38L488.33,39.51L492.28,73.57L496.1,80.95L500.05,51.76L503.87,47.94L507.82,24.31L511.77,14.75L519.41,14.75L523.23,15.88L527.18,25.09L531.01,14.75L542.73,14.75L546.68,21.96L550.5,15.45L554.45,14.75L573.68,14.75L577.51,34.82L581.46,16.57L585.41,26.04L589.23,14.75L593.18,14.75L600.95,14.75L604.9,19.09L608.47,14.75L612.41,14.75L658.92,14.75L662.74,27.52L666.69,14.75L670.51,40.99L674.46,23.44L678.41,69.92L682.23,85.9L686.18,38.73L690,15.97L693.95,43.07L697.9,69.05L701.6,72.18L705.54,60.97L709.37,55.24L713.32,36.3L717.14,35.51L721.09,15.27L725.04,14.75L728.86,17.18L732.81,17.96L736.63,14.75L740.58,14.75L744.53,16.57L748.1,14.75L755.87,14.92L759.82,19.96L763.64,27.09L767.59,31.78L771.54,33.34L775.36,19.96L779.31,14.75L783.13,15.79L787.08,14.75L791.03,14.75L798.55,42.38L802.37,28.48L806.32,14.75L810.14,15.36L818.04,14.75L821.86,14.75L825.81,44.98L829.63,37.69L833.58,81.47L837.53,41.25L841.1,20.66L845.05,14.75L848.87,14.75L852.82,42.12L856.64,15.01L860.59,14.75L884.03,14.75L887.73,53.76L891.68,126.56L895.5,72.44L899.45,55.84L903.27,45.94L907.22,45.33L911.17,19.62L914.99,26.91L918.94,40.12L922.76,14.75L926.71,14.75L930.66,18.23L934.23,14.75L942,14.75"></path></g><g class="points"></g><g class="text"></g></g><g class="trace scatter tracee01d36" style="stroke-miterlimit: 2; opacity: 1;"><g class="fills"></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(105, 105, 105); stroke-opacity: 1; stroke-width: 1.3px; opacity: 1;" d="M0,14.75L3.57,36.56L7.52,53.41L11.34,29.87L15.29,14.75L19.11,17.27L23.06,48.89L27.01,73.91L30.83,123.78L38.6,61.23L42.55,44.55L46.5,21.35L50.07,14.75L54.02,14.75L57.84,26.04L61.79,43.51L65.61,94.16L69.56,129.52L73.51,124.82L77.33,156.54L81.28,141.85L85.1,124.48L89.05,151.32L93,159.66L96.57,169.05L100.52,184.77L104.34,166.79L108.29,152.89L112.11,127.43L116.06,102.58L120.01,61.23L123.83,74.52L127.78,42.9L131.6,50.46L135.55,44.29L139.5,21.35L143.2,14.75L147.15,14.75L150.97,29.08L154.92,48.63L158.74,37.16L162.69,43.59L166.64,33.86L170.46,22.66L174.41,18.05L178.23,14.75L182.18,14.75L189.7,14.75L193.65,21.7L197.47,26.83L201.42,14.75L209.19,14.75L213.14,16.66L216.96,14.75L220.91,31.95L224.73,14.75L228.68,14.75L243.97,14.75L247.92,46.55L251.74,64.88L255.69,53.67L259.64,41.51L263.46,36.9L267.41,21.09L271.24,14.75L302.19,14.75L306.14,18.14L309.97,14.75L313.92,14.75L317.74,49.76L321.69,52.19L325.64,87.55L329.33,78.87L333.28,110.49L337.1,91.38L341.05,89.12L344.87,134.03L348.82,131.34L352.77,129.95L360.54,209.44L364.37,226.12L368.32,226.47L372.26,220.91L375.83,231.51L379.78,211.53L383.6,160.88L387.55,138.73L391.37,133.17L395.32,91.55L399.27,85.38L403.1,54.28L407.04,62.45L410.87,43.94L414.82,14.75L418.77,18.75L422.33,14.75L426.28,14.75L434.05,14.75L437.88,16.05L441.83,18.83L445.77,16.23L449.6,14.75L453.55,14.75L461.32,14.75L465.27,31.69L472.78,30.39L476.61,30.82L480.56,19.88L484.38,32.21L488.33,26.74L492.28,43.51L496.1,56.45L500.05,37.51L503.87,38.55L507.82,22.22L511.77,14.75L515.46,14.75L519.41,23L523.23,24.39L527.18,40.29L531.01,30.91L534.96,14.75L538.9,17.44L542.73,14.75L546.68,19.79L550.5,14.75L554.45,14.75L558.4,15.53L561.96,14.75L565.91,14.75L569.74,23.09L573.68,29.95L577.51,63.05L581.46,57.23L585.41,60.1L593.18,26.3L597,26.39L600.95,36.38L604.9,39.25L608.47,22.48L612.41,14.75L616.24,18.83L620.19,14.75L631.91,14.75L635.73,25.44L639.68,14.75L643.5,14.75L662.74,14.84L666.69,17.53L670.51,44.38L674.46,53.15L678.41,101.02L682.23,112.4L686.18,72.52L690,59.49L697.9,108.06L701.6,99.98L705.54,72.52L709.37,74.78L717.14,50.63L721.09,19.62L725.04,14.75L728.86,14.75L732.81,19.35L736.63,14.75L755.87,14.75L759.82,25.7L767.59,31L771.54,27.52L775.36,17.36L779.31,14.75L783.13,19.53L787.08,14.75L791.03,14.75L794.6,28.13L798.55,37.51L802.37,25.61L806.32,14.75L810.14,24.48L814.09,21.87L818.04,22.22L821.86,27.26L825.81,57.15L829.63,42.29L833.58,67.83L837.53,24.65L841.1,14.75L848.87,14.75L852.82,43.42L856.64,14.75L860.59,14.75L884.03,14.75L887.73,35.17L891.68,113.62L895.5,58.71L899.45,49.33L903.27,33.52L907.22,19.44L911.17,14.75L914.99,18.4L918.94,14.75L942,14.75"></path></g><g class="points"></g><g class="text"></g></g></g></g><g class="overplot"></g><path class="xlines-above crisp" style="fill: none;" d="M0,0"></path><path class="ylines-above crisp" style="fill: none;" d="M0,0"></path><g class="overlines-above"></g><g class="xaxislayer-above"><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2005" data-math="N" transform="translate(262.31,0)">2005</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2010" data-math="N" transform="translate(494.94,0)">2010</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2015" data-math="N" transform="translate(727.58,0)">2015</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2020" data-math="N" transform="translate(960.21,0)">2020</text></g></g><g class="yaxislayer-above"><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="−30%" data-math="N" transform="translate(0,375.38)">−30%</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="−25%" data-math="N" transform="translate(0,331.95)">−25%</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="−20%" data-math="N" transform="translate(0,288.51)">−20%</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="−15%" data-math="N" transform="translate(0,245.07)">−15%</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="−10%" data-math="N" transform="translate(0,201.63)">−10%</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="−5%" data-math="N" transform="translate(0,158.19)">−5%</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="0%" data-math="N" transform="translate(0,114.75)">0%</text></g></g><g class="overaxes-above"></g></g></g><g class="polarlayer"></g><g class="ternarylayer"></g><g class="geolayer"></g><g class="funnelarealayer"></g><g class="pielayer"></g><g class="treemaplayer"></g><g class="sunburstlayer"></g><g class="glimages"></g></svg><div class="gl-container"></div><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1152" height="475"><defs id="topdefs-8c78f4"><g class="clips"></g><clipPath id="legend8c78f4"><rect width="99" height="48" x="0" y="0"></rect></clipPath></defs><g class="indicatorlayer"></g><g class="layer-above"><g class="imagelayer"></g><g class="shapelayer"></g></g><g class="infolayer"><g class="legend" pointer-events="all" transform="translate(1040.8400000000001,100)"><rect class="bg" shape-rendering="crispEdges" style="stroke: rgb(68, 68, 68); stroke-opacity: 1; fill: rgb(247, 247, 252); fill-opacity: 1; stroke-width: 0px;" width="99" height="48" x="0" y="0"></rect><g class="scrollbox" transform="" clip-path="url('#legend8c78f4')"><g class="groups"><g class="traces" style="opacity: 1;" transform="translate(0,14.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="2 Fundos" data-math="N">2 Fundos</text><g class="layers" style="opacity: 1;"><g class="legendfill"></g><g class="legendlines"><path class="js-line" d="M5,0h30" style="fill: none; stroke: rgb(65, 105, 225); stroke-opacity: 1; stroke-width: 1.3px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="93.25" height="19"></rect></g><g class="traces" style="opacity: 1;" transform="translate(0,33.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="Portfolio" data-math="N">Portfolio</text><g class="layers" style="opacity: 1;"><g class="legendfill"></g><g class="legendlines"><path class="js-line" d="M5,0h30" style="fill: none; stroke: rgb(105, 105, 105); stroke-opacity: 1; stroke-width: 1.3px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="93.25" height="19"></rect></g></g></g><rect class="scrollbar" rx="20" ry="3" width="0" height="0" style="fill: rgb(128, 139, 164); fill-opacity: 1;" x="0" y="0"></rect></g><g class="g-gtitle"><text class="gtitle" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 17px; fill: rgb(42, 63, 95); opacity: 1; font-weight: normal; white-space: pre;" x="576" y="50" text-anchor="middle" dy="0em" data-unformatted="Drawdowns dos portfolios" data-math="N">Drawdowns dos portfolios</text></g><g class="g-xtitle"></g><g class="g-ytitle"></g><g class="annotation" data-index="0" style="opacity: 1;"><g class="annotation-text-g" transform="rotate(0,551,433.875)"><g class="cursor-pointer" transform="translate(549,432)"><rect class="bg" style="stroke-width: 1px; stroke: rgb(0, 0, 0); stroke-opacity: 0; fill: rgb(0, 0, 0); fill-opacity: 0;" x="0.5" y="0.5" width="3" height="3"></rect><text class="annotation-text" style="font-family: Arial; font-size: 12px; fill: rgb(150, 150, 150); fill-opacity: 1; white-space: pre;" text-anchor="middle" data-unformatted="" data-math="N" x="2" y="2"></text></g></g></g></g><g class="menulayer"></g><g class="zoomlayer"></g></svg><div class="modebar-container" style="position: absolute; top: 0px; right: 0px; width: 100%;"><div id="modebar-8c78f4" class="modebar modebar--hover ease-bg"><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Download plot as a png" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m500 450c-83 0-150-67-150-150 0-83 67-150 150-150 83 0 150 67 150 150 0 83-67 150-150 150z m400 150h-120c-16 0-34 13-39 29l-31 93c-6 15-23 28-40 28h-340c-16 0-34-13-39-28l-31-94c-6-15-23-28-40-28h-120c-55 0-100-45-100-100v-450c0-55 45-100 100-100h800c55 0 100 45 100 100v450c0 55-45 100-100 100z m-400-550c-138 0-250 112-250 250 0 138 112 250 250 250 138 0 250-112 250-250 0-138-112-250-250-250z m365 380c-19 0-35 16-35 35 0 19 16 35 35 35 19 0 35-16 35-35 0-19-16-35-35-35z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn active" data-title="Zoom" data-attr="dragmode" data-val="zoom" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m1000-25l-250 251c40 63 63 138 63 218 0 224-182 406-407 406-224 0-406-182-406-406s183-406 407-406c80 0 155 22 218 62l250-250 125 125z m-812 250l0 438 437 0 0-438-437 0z m62 375l313 0 0-312-313 0 0 312z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Pan" data-attr="dragmode" data-val="pan" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m1000 350l-187 188 0-125-250 0 0 250 125 0-188 187-187-187 125 0 0-250-250 0 0 125-188-188 186-187 0 125 252 0 0-250-125 0 187-188 188 188-125 0 0 250 250 0 0-126 187 188z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Zoom in" data-attr="zoom" data-val="in" data-toggle="false" data-gravity="n"><svg viewBox="0 0 875 1000" class="icon" height="1em" width="1em"><path d="m1 787l0-875 875 0 0 875-875 0z m687-500l-187 0 0-187-125 0 0 187-188 0 0 125 188 0 0 187 125 0 0-187 187 0 0-125z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Zoom out" data-attr="zoom" data-val="out" data-toggle="false" data-gravity="n"><svg viewBox="0 0 875 1000" class="icon" height="1em" width="1em"><path d="m0 788l0-876 875 0 0 876-875 0z m688-500l-500 0 0 125 500 0 0-125z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Autoscale" data-attr="zoom" data-val="auto" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m250 850l-187 0-63 0 0-62 0-188 63 0 0 188 187 0 0 62z m688 0l-188 0 0-62 188 0 0-188 62 0 0 188 0 62-62 0z m-875-938l0 188-63 0 0-188 0-62 63 0 187 0 0 62-187 0z m875 188l0-188-188 0 0-62 188 0 62 0 0 62 0 188-62 0z m-125 188l-1 0-93-94-156 156 156 156 92-93 2 0 0 250-250 0 0-2 93-92-156-156-156 156 94 92 0 2-250 0 0-250 0 0 93 93 157-156-157-156-93 94 0 0 0-250 250 0 0 0-94 93 156 157 156-157-93-93 0 0 250 0 0 250z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Reset axes" data-attr="zoom" data-val="reset" data-toggle="false" data-gravity="n"><svg viewBox="0 0 928.6 1000" class="icon" height="1em" width="1em"><path d="m786 296v-267q0-15-11-26t-25-10h-214v214h-143v-214h-214q-15 0-25 10t-11 26v267q0 1 0 2t0 2l321 264 321-264q1-1 1-4z m124 39l-34-41q-5-5-12-6h-2q-7 0-12 3l-386 322-386-322q-7-4-13-4-7 2-12 7l-35 41q-4 5-3 13t6 12l401 334q18 15 42 15t43-15l136-114v109q0 8 5 13t13 5h107q8 0 13-5t5-13v-227l122-102q5-5 6-12t-4-13z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Toggle Spike Lines" data-attr="_cartesianSpikesEnabled" data-val="on" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="M512 409c0-57-46-104-103-104-57 0-104 47-104 104 0 57 47 103 104 103 57 0 103-46 103-103z m-327-39l92 0 0 92-92 0z m-185 0l92 0 0 92-92 0z m370-186l92 0 0 93-92 0z m0-184l92 0 0 92-92 0z" transform="matrix(1.5 0 0 -1.5 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Show closest data on hover" data-attr="hovermode" data-val="closest" data-toggle="false" data-gravity="ne"><svg viewBox="0 0 1500 1000" class="icon" height="1em" width="1em"><path d="m375 725l0 0-375-375 375-374 0-1 1125 0 0 750-1125 0z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn active" data-title="Compare data on hover" data-attr="hovermode" data-val="x" data-toggle="false" data-gravity="ne"><svg viewBox="0 0 1125 1000" class="icon" height="1em" width="1em"><path d="m187 786l0 2-187-188 188-187 0 0 937 0 0 373-938 0z m0-499l0 1-187-188 188-188 0 0 937 0 0 376-938-1z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a href="https://plotly.com/" target="_blank" data-title="Produced with Plotly" class="modebar-btn plotlyjsicon modebar-btn--logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 132" height="1em" width="1em"><defs><style>.cls-1 {fill: #3f4f75;} .cls-2 {fill: #80cfbe;} .cls-3 {fill: #fff;}</style></defs><title>plotly-logomark</title><g id="symbol"><rect class="cls-1" width="132" height="132" rx="6" ry="6"></rect><circle class="cls-2" cx="78" cy="54" r="6"></circle><circle class="cls-2" cx="102" cy="30" r="6"></circle><circle class="cls-2" cx="78" cy="30" r="6"></circle><circle class="cls-2" cx="54" cy="30" r="6"></circle><circle class="cls-2" cx="30" cy="30" r="6"></circle><circle class="cls-2" cx="30" cy="54" r="6"></circle><path class="cls-3" d="M30,72a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,30,72Z"></path><path class="cls-3" d="M78,72a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,78,72Z"></path><path class="cls-3" d="M54,48a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,0,0,54,48Z"></path><path class="cls-3" d="M102,48a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,0,0,102,48Z"></path></g></svg></a></div></div></div><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1152" height="475"><g class="hoverlayer"></g></svg></div></div><script>
+                var graphs = {"data": [{"line": {"color": "royalblue", "width": 1.3}, "mode": "lines", "name": "2 Fundos", "x": ["2001-01-31T00:00:00", "2001-02-28T00:00:00", "2001-03-31T00:00:00", "2001-04-30T00:00:00", "2001-05-31T00:00:00", "2001-06-30T00:00:00", "2001-07-31T00:00:00", "2001-08-31T00:00:00", "2001-09-30T00:00:00", "2001-10-31T00:00:00", "2001-11-30T00:00:00", "2001-12-31T00:00:00", "2002-01-31T00:00:00", "2002-02-28T00:00:00", "2002-03-31T00:00:00", "2002-04-30T00:00:00", "2002-05-31T00:00:00", "2002-06-30T00:00:00", "2002-07-31T00:00:00", "2002-08-31T00:00:00", "2002-09-30T00:00:00", "2002-10-31T00:00:00", "2002-11-30T00:00:00", "2002-12-31T00:00:00", "2003-01-31T00:00:00", "2003-02-28T00:00:00", "2003-03-31T00:00:00", "2003-04-30T00:00:00", "2003-05-31T00:00:00", "2003-06-30T00:00:00", "2003-07-31T00:00:00", "2003-08-31T00:00:00", "2003-09-30T00:00:00", "2003-10-31T00:00:00", "2003-11-30T00:00:00", "2003-12-31T00:00:00", "2004-01-31T00:00:00", "2004-02-29T00:00:00", "2004-03-31T00:00:00", "2004-04-30T00:00:00", "2004-05-31T00:00:00", "2004-06-30T00:00:00", "2004-07-31T00:00:00", "2004-08-31T00:00:00", "2004-09-30T00:00:00", "2004-10-31T00:00:00", "2004-11-30T00:00:00", "2004-12-31T00:00:00", "2005-01-31T00:00:00", "2005-02-28T00:00:00", "2005-03-31T00:00:00", "2005-04-30T00:00:00", "2005-05-31T00:00:00", "2005-06-30T00:00:00", "2005-07-31T00:00:00", "2005-08-31T00:00:00", "2005-09-30T00:00:00", "2005-10-31T00:00:00", "2005-11-30T00:00:00", "2005-12-31T00:00:00", "2006-01-31T00:00:00", "2006-02-28T00:00:00", "2006-03-31T00:00:00", "2006-04-30T00:00:00", "2006-05-31T00:00:00", "2006-06-30T00:00:00", "2006-07-31T00:00:00", "2006-08-31T00:00:00", "2006-09-30T00:00:00", "2006-10-31T00:00:00", "2006-11-30T00:00:00", "2006-12-31T00:00:00", "2007-01-31T00:00:00", "2007-02-28T00:00:00", "2007-03-31T00:00:00", "2007-04-30T00:00:00", "2007-05-31T00:00:00", "2007-06-30T00:00:00", "2007-07-31T00:00:00", "2007-08-31T00:00:00", "2007-09-30T00:00:00", "2007-10-31T00:00:00", "2007-11-30T00:00:00", "2007-12-31T00:00:00", "2008-01-31T00:00:00", "2008-02-29T00:00:00", "2008-03-31T00:00:00", "2008-04-30T00:00:00", "2008-05-31T00:00:00", "2008-06-30T00:00:00", "2008-07-31T00:00:00", "2008-08-31T00:00:00", "2008-09-30T00:00:00", "2008-10-31T00:00:00", "2008-11-30T00:00:00", "2008-12-31T00:00:00", "2009-01-31T00:00:00", "2009-02-28T00:00:00", "2009-03-31T00:00:00", "2009-04-30T00:00:00", "2009-05-31T00:00:00", "2009-06-30T00:00:00", "2009-07-31T00:00:00", "2009-08-31T00:00:00", "2009-09-30T00:00:00", "2009-10-31T00:00:00", "2009-11-30T00:00:00", "2009-12-31T00:00:00", "2010-01-31T00:00:00", "2010-02-28T00:00:00", "2010-03-31T00:00:00", "2010-04-30T00:00:00", "2010-05-31T00:00:00", "2010-06-30T00:00:00", "2010-07-31T00:00:00", "2010-08-31T00:00:00", "2010-09-30T00:00:00", "2010-10-31T00:00:00", "2010-11-30T00:00:00", "2010-12-31T00:00:00", "2011-01-31T00:00:00", "2011-02-28T00:00:00", "2011-03-31T00:00:00", "2011-04-30T00:00:00", "2011-05-31T00:00:00", "2011-06-30T00:00:00", "2011-07-31T00:00:00", "2011-08-31T00:00:00", "2011-09-30T00:00:00", "2011-10-31T00:00:00", "2011-11-30T00:00:00", "2011-12-31T00:00:00", "2012-01-31T00:00:00", "2012-02-29T00:00:00", "2012-03-31T00:00:00", "2012-04-30T00:00:00", "2012-05-31T00:00:00", "2012-06-30T00:00:00", "2012-07-31T00:00:00", "2012-08-31T00:00:00", "2012-09-30T00:00:00", "2012-10-31T00:00:00", "2012-11-30T00:00:00", "2012-12-31T00:00:00", "2013-01-31T00:00:00", "2013-02-28T00:00:00", "2013-03-31T00:00:00", "2013-04-30T00:00:00", "2013-05-31T00:00:00", "2013-06-30T00:00:00", "2013-07-31T00:00:00", "2013-08-31T00:00:00", "2013-09-30T00:00:00", "2013-10-31T00:00:00", "2013-11-30T00:00:00", "2013-12-31T00:00:00", "2014-01-31T00:00:00", "2014-02-28T00:00:00", "2014-03-31T00:00:00", "2014-04-30T00:00:00", "2014-05-31T00:00:00", "2014-06-30T00:00:00", "2014-07-31T00:00:00", "2014-08-31T00:00:00", "2014-09-30T00:00:00", "2014-10-31T00:00:00", "2014-11-30T00:00:00", "2014-12-31T00:00:00", "2015-01-31T00:00:00", "2015-02-28T00:00:00", "2015-03-31T00:00:00", "2015-04-30T00:00:00", "2015-05-31T00:00:00", "2015-06-30T00:00:00", "2015-07-31T00:00:00", "2015-08-31T00:00:00", "2015-09-30T00:00:00", "2015-10-31T00:00:00", "2015-11-30T00:00:00", "2015-12-31T00:00:00", "2016-01-31T00:00:00", "2016-02-29T00:00:00", "2016-03-31T00:00:00", "2016-04-30T00:00:00", "2016-05-31T00:00:00", "2016-06-30T00:00:00", "2016-07-31T00:00:00", "2016-08-31T00:00:00", "2016-09-30T00:00:00", "2016-10-31T00:00:00", "2016-11-30T00:00:00", "2016-12-31T00:00:00", "2017-01-31T00:00:00", "2017-02-28T00:00:00", "2017-03-31T00:00:00", "2017-04-30T00:00:00", "2017-05-31T00:00:00", "2017-06-30T00:00:00", "2017-07-31T00:00:00", "2017-08-31T00:00:00", "2017-09-30T00:00:00", "2017-10-31T00:00:00", "2017-11-30T00:00:00", "2017-12-31T00:00:00", "2018-01-31T00:00:00", "2018-02-28T00:00:00", "2018-03-31T00:00:00", "2018-04-30T00:00:00", "2018-05-31T00:00:00", "2018-06-30T00:00:00", "2018-07-31T00:00:00", "2018-08-31T00:00:00", "2018-09-30T00:00:00", "2018-10-31T00:00:00", "2018-11-30T00:00:00", "2018-12-31T00:00:00", "2019-01-31T00:00:00", "2019-02-28T00:00:00", "2019-03-31T00:00:00", "2019-04-30T00:00:00", "2019-05-31T00:00:00", "2019-06-30T00:00:00", "2019-07-31T00:00:00", "2019-08-31T00:00:00", "2019-09-30T00:00:00", "2019-10-31T00:00:00", "2019-11-30T00:00:00", "2019-12-31T00:00:00", "2020-01-31T00:00:00", "2020-02-29T00:00:00", "2020-03-31T00:00:00", "2020-04-30T00:00:00", "2020-05-31T00:00:00", "2020-06-30T00:00:00", "2020-07-31T00:00:00", "2020-08-31T00:00:00", "2020-09-30T00:00:00", "2020-10-31T00:00:00", "2020-11-30T00:00:00", "2020-12-31T00:00:00", "2021-01-31T00:00:00", "2021-02-28T00:00:00", "2021-03-31T00:00:00", "2021-04-30T00:00:00"], "y": [0.0, -4.52, -5.98, -2.06, 0.0, -1.75, -4.04, -8.62, -13.24, -11.01, -7.95, -7.53, -7.17, -7.74, -5.99, -9.44, -11.16, -16.88, -20.25, -19.65, -24.38, -21.59, -19.42, -23.16, -25.57, -26.25, -26.95, -23.88, -23.25, -21.32, -19.86, -17.4, -19.71, -16.79, -17.58, -16.76, -14.88, -13.64, -13.22, -13.44, -14.02, -12.59, -13.65, -13.42, -13.45, -13.2, -12.72, -11.66, -10.33, -9.72, -9.6, -10.11, -6.12, -4.11, -2.33, -2.37, 0.0, -1.45, 0.0, 0.0, 0.0, 0.0, 0.0, -0.83, -4.19, -4.01, -3.16, -1.3, 0.0, 0.0, -0.64, 0.0, 0.0, -0.99, -0.39, 0.0, 0.0, -0.91, -2.89, -2.33, -1.96, -0.86, -3.98, -4.47, -9.31, -10.87, -13.62, -10.12, -9.47, -14.69, -15.13, -12.46, -16.75, -22.07, -23.92, -25.41, -26.12, -30.56, -29.1, -23.96, -22.88, -22.39, -18.35, -16.53, -15.13, -16.59, -15.05, -11.64, -11.9, -9.9, -5.74, -4.45, -5.47, -7.19, -5.95, -6.18, -5.19, -4.06, -1.66, 0.0, -0.07, 0.0, -2.36, -2.2, -1.16, -2.72, -2.85, -6.77, -7.62, -4.26, -3.82, -1.1, 0.0, 0.0, 0.0, -0.13, -1.19, 0.0, 0.0, 0.0, 0.0, -0.83, -0.08, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.31, -0.21, -1.3, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.47, 0.0, -3.02, -1.0, -6.35, -8.19, -2.76, -0.14, -3.26, -6.25, -6.61, -5.32, -4.66, -2.48, -2.39, -0.06, 0.0, -0.28, -0.37, 0.0, 0.0, -0.21, 0.0, 0.0, -0.02, -0.6, -1.42, -1.96, -2.14, -0.6, 0.0, -0.12, 0.0, 0.0, -1.49, -3.18, -1.58, 0.0, -0.07, 0.0, 0.0, 0.0, -3.48, -2.64, -7.68, -3.05, -0.68, 0.0, 0.0, -3.15, -0.03, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -4.49, -12.87, -6.64, -4.73, -3.59, -3.52, -0.56, -1.4, -2.92, 0.0, 0.0, -0.4, 0.0, 0.0, 0.0], "type": "scatter"}, {"line": {"color": "dimgrey", "width": 1.3}, "mode": "lines", "name": "Portfolio", "x": ["2001-01-31T00:00:00", "2001-02-28T00:00:00", "2001-03-31T00:00:00", "2001-04-30T00:00:00", "2001-05-31T00:00:00", "2001-06-30T00:00:00", "2001-07-31T00:00:00", "2001-08-31T00:00:00", "2001-09-30T00:00:00", "2001-10-31T00:00:00", "2001-11-30T00:00:00", "2001-12-31T00:00:00", "2002-01-31T00:00:00", "2002-02-28T00:00:00", "2002-03-31T00:00:00", "2002-04-30T00:00:00", "2002-05-31T00:00:00", "2002-06-30T00:00:00", "2002-07-31T00:00:00", "2002-08-31T00:00:00", "2002-09-30T00:00:00", "2002-10-31T00:00:00", "2002-11-30T00:00:00", "2002-12-31T00:00:00", "2003-01-31T00:00:00", "2003-02-28T00:00:00", "2003-03-31T00:00:00", "2003-04-30T00:00:00", "2003-05-31T00:00:00", "2003-06-30T00:00:00", "2003-07-31T00:00:00", "2003-08-31T00:00:00", "2003-09-30T00:00:00", "2003-10-31T00:00:00", "2003-11-30T00:00:00", "2003-12-31T00:00:00", "2004-01-31T00:00:00", "2004-02-29T00:00:00", "2004-03-31T00:00:00", "2004-04-30T00:00:00", "2004-05-31T00:00:00", "2004-06-30T00:00:00", "2004-07-31T00:00:00", "2004-08-31T00:00:00", "2004-09-30T00:00:00", "2004-10-31T00:00:00", "2004-11-30T00:00:00", "2004-12-31T00:00:00", "2005-01-31T00:00:00", "2005-02-28T00:00:00", "2005-03-31T00:00:00", "2005-04-30T00:00:00", "2005-05-31T00:00:00", "2005-06-30T00:00:00", "2005-07-31T00:00:00", "2005-08-31T00:00:00", "2005-09-30T00:00:00", "2005-10-31T00:00:00", "2005-11-30T00:00:00", "2005-12-31T00:00:00", "2006-01-31T00:00:00", "2006-02-28T00:00:00", "2006-03-31T00:00:00", "2006-04-30T00:00:00", "2006-05-31T00:00:00", "2006-06-30T00:00:00", "2006-07-31T00:00:00", "2006-08-31T00:00:00", "2006-09-30T00:00:00", "2006-10-31T00:00:00", "2006-11-30T00:00:00", "2006-12-31T00:00:00", "2007-01-31T00:00:00", "2007-02-28T00:00:00", "2007-03-31T00:00:00", "2007-04-30T00:00:00", "2007-05-31T00:00:00", "2007-06-30T00:00:00", "2007-07-31T00:00:00", "2007-08-31T00:00:00", "2007-09-30T00:00:00", "2007-10-31T00:00:00", "2007-11-30T00:00:00", "2007-12-31T00:00:00", "2008-01-31T00:00:00", "2008-02-29T00:00:00", "2008-03-31T00:00:00", "2008-04-30T00:00:00", "2008-05-31T00:00:00", "2008-06-30T00:00:00", "2008-07-31T00:00:00", "2008-08-31T00:00:00", "2008-09-30T00:00:00", "2008-10-31T00:00:00", "2008-11-30T00:00:00", "2008-12-31T00:00:00", "2009-01-31T00:00:00", "2009-02-28T00:00:00", "2009-03-31T00:00:00", "2009-04-30T00:00:00", "2009-05-31T00:00:00", "2009-06-30T00:00:00", "2009-07-31T00:00:00", "2009-08-31T00:00:00", "2009-09-30T00:00:00", "2009-10-31T00:00:00", "2009-11-30T00:00:00", "2009-12-31T00:00:00", "2010-01-31T00:00:00", "2010-02-28T00:00:00", "2010-03-31T00:00:00", "2010-04-30T00:00:00", "2010-05-31T00:00:00", "2010-06-30T00:00:00", "2010-07-31T00:00:00", "2010-08-31T00:00:00", "2010-09-30T00:00:00", "2010-10-31T00:00:00", "2010-11-30T00:00:00", "2010-12-31T00:00:00", "2011-01-31T00:00:00", "2011-02-28T00:00:00", "2011-03-31T00:00:00", "2011-04-30T00:00:00", "2011-05-31T00:00:00", "2011-06-30T00:00:00", "2011-07-31T00:00:00", "2011-08-31T00:00:00", "2011-09-30T00:00:00", "2011-10-31T00:00:00", "2011-11-30T00:00:00", "2011-12-31T00:00:00", "2012-01-31T00:00:00", "2012-02-29T00:00:00", "2012-03-31T00:00:00", "2012-04-30T00:00:00", "2012-05-31T00:00:00", "2012-06-30T00:00:00", "2012-07-31T00:00:00", "2012-08-31T00:00:00", "2012-09-30T00:00:00", "2012-10-31T00:00:00", "2012-11-30T00:00:00", "2012-12-31T00:00:00", "2013-01-31T00:00:00", "2013-02-28T00:00:00", "2013-03-31T00:00:00", "2013-04-30T00:00:00", "2013-05-31T00:00:00", "2013-06-30T00:00:00", "2013-07-31T00:00:00", "2013-08-31T00:00:00", "2013-09-30T00:00:00", "2013-10-31T00:00:00", "2013-11-30T00:00:00", "2013-12-31T00:00:00", "2014-01-31T00:00:00", "2014-02-28T00:00:00", "2014-03-31T00:00:00", "2014-04-30T00:00:00", "2014-05-31T00:00:00", "2014-06-30T00:00:00", "2014-07-31T00:00:00", "2014-08-31T00:00:00", "2014-09-30T00:00:00", "2014-10-31T00:00:00", "2014-11-30T00:00:00", "2014-12-31T00:00:00", "2015-01-31T00:00:00", "2015-02-28T00:00:00", "2015-03-31T00:00:00", "2015-04-30T00:00:00", "2015-05-31T00:00:00", "2015-06-30T00:00:00", "2015-07-31T00:00:00", "2015-08-31T00:00:00", "2015-09-30T00:00:00", "2015-10-31T00:00:00", "2015-11-30T00:00:00", "2015-12-31T00:00:00", "2016-01-31T00:00:00", "2016-02-29T00:00:00", "2016-03-31T00:00:00", "2016-04-30T00:00:00", "2016-05-31T00:00:00", "2016-06-30T00:00:00", "2016-07-31T00:00:00", "2016-08-31T00:00:00", "2016-09-30T00:00:00", "2016-10-31T00:00:00", "2016-11-30T00:00:00", "2016-12-31T00:00:00", "2017-01-31T00:00:00", "2017-02-28T00:00:00", "2017-03-31T00:00:00", "2017-04-30T00:00:00", "2017-05-31T00:00:00", "2017-06-30T00:00:00", "2017-07-31T00:00:00", "2017-08-31T00:00:00", "2017-09-30T00:00:00", "2017-10-31T00:00:00", "2017-11-30T00:00:00", "2017-12-31T00:00:00", "2018-01-31T00:00:00", "2018-02-28T00:00:00", "2018-03-31T00:00:00", "2018-04-30T00:00:00", "2018-05-31T00:00:00", "2018-06-30T00:00:00", "2018-07-31T00:00:00", "2018-08-31T00:00:00", "2018-09-30T00:00:00", "2018-10-31T00:00:00", "2018-11-30T00:00:00", "2018-12-31T00:00:00", "2019-01-31T00:00:00", "2019-02-28T00:00:00", "2019-03-31T00:00:00", "2019-04-30T00:00:00", "2019-05-31T00:00:00", "2019-06-30T00:00:00", "2019-07-31T00:00:00", "2019-08-31T00:00:00", "2019-09-30T00:00:00", "2019-10-31T00:00:00", "2019-11-30T00:00:00", "2019-12-31T00:00:00", "2020-01-31T00:00:00", "2020-02-29T00:00:00", "2020-03-31T00:00:00", "2020-04-30T00:00:00", "2020-05-31T00:00:00", "2020-06-30T00:00:00", "2020-07-31T00:00:00", "2020-08-31T00:00:00", "2020-09-30T00:00:00", "2020-10-31T00:00:00", "2020-11-30T00:00:00", "2020-12-31T00:00:00", "2021-01-31T00:00:00", "2021-02-28T00:00:00", "2021-03-31T00:00:00", "2021-04-30T00:00:00"], "y": [0.0, -2.51, -4.45, -1.74, 0.0, -0.29, -3.93, -6.81, -12.55, -9.09, -5.35, -3.43, -0.76, 0.0, 0.0, -1.3, -3.31, -9.14, -13.21, -12.67, -16.32, -14.63, -12.63, -15.72, -16.68, -17.76, -19.57, -17.5, -15.9, -12.97, -10.11, -5.35, -6.88, -3.24, -4.11, -3.4, -0.76, 0.0, 0.0, -1.65, -3.9, -2.58, -3.32, -2.2, -0.91, -0.38, 0.0, 0.0, 0.0, 0.0, -0.8, -1.39, 0.0, 0.0, 0.0, -0.22, 0.0, -1.98, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -3.66, -5.77, -4.48, -3.08, -2.55, -0.73, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.39, 0.0, 0.0, -4.03, -4.31, -8.38, -7.38, -11.02, -8.82, -8.56, -13.73, -13.42, -13.26, -17.57, -22.41, -24.33, -24.37, -23.73, -24.95, -22.65, -16.82, -14.27, -13.63, -8.84, -8.13, -4.55, -5.49, -3.36, 0.0, -0.46, 0.0, 0.0, 0.0, 0.0, -0.15, -0.47, -0.17, 0.0, 0.0, 0.0, 0.0, -1.95, -1.86, -1.8, -1.85, -0.59, -2.01, -1.38, -3.31, -4.8, -2.62, -2.74, -0.86, 0.0, 0.0, -0.95, -1.11, -2.94, -1.86, 0.0, -0.31, 0.0, -0.58, 0.0, 0.0, -0.09, 0.0, 0.0, -0.96, -1.75, -5.56, -4.89, -5.22, -3.16, -1.33, -1.34, -2.49, -2.82, -0.89, 0.0, -0.47, 0.0, 0.0, 0.0, 0.0, -1.23, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.01, -0.32, -3.41, -4.42, -9.93, -11.24, -6.65, -5.15, -8.12, -10.74, -9.81, -6.65, -6.91, -5.47, -4.13, -0.56, 0.0, 0.0, -0.53, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.26, -1.57, -1.87, -1.47, -0.3, 0.0, -0.55, 0.0, 0.0, -1.54, -2.62, -1.25, 0.0, -1.12, -0.82, -0.86, -1.44, -4.88, -3.17, -6.11, -1.14, 0.0, 0.0, 0.0, -3.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.35, -11.38, -5.06, -3.98, -2.16, -0.54, 0.0, -0.42, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "type": "scatter"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmapgl": [{"type": "heatmapgl", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"type": "scatter", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"type": "histogram", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"bgcolor": "#E5ECF6", "angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "ternary": {"bgcolor": "#E5ECF6", "aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "#E5ECF6", "subunitcolor": "white", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "title": {"text": "Drawdowns dos portfolios", "x": 0.5}, "yaxis": {"tickfont": {"color": "#4D5663"}, "title": {"text": ""}, "ticksuffix": "%", "tickprefix": "", "gridcolor": "#E1E5ED", "zerolinecolor": "#E1E5ED", "showgrid": true, "tickformat": ""}, "xaxis": {"tickfont": {"color": "#4D5663"}, "title": {"text": "", "font": {"color": "#4D5663"}}, "gridcolor": "#E1E5ED", "zerolinecolor": "#E1E5ED", "showgrid": true, "tickformat": "", "ticksuffix": "", "tickprefix": ""}, "paper_bgcolor": "#f7f7fc", "plot_bgcolor": "#f7f7fc", "hovermode": "x", "annotations": [{"font": {"color": "rgb(150,150,150)", "family": "Arial", "size": 12}, "showarrow": false, "text": "", "x": 0.5, "xanchor": "center", "xref": "paper", "y": "-0.125", "yanchor": "top", "yref": "paper"}]}};
+                Plotly.plot('portfolios_2fundos_dd_chart',graphs,{});
+            </script>
+          </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xxl-8" style="padding-top: 3rem; padding-left: 2rem; margin-right:3%">
+
+        <h4 class=""> Tabelas de performance desde a incepção</h4>
+
+        
+    <table class="dataframe" border="1">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CAGR</th>
+      <th>Return</th>
+      <th>StdDev</th>
+      <th>Sharpe</th>
+      <th>Max DD</th>
+      <th>MAR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2 Fundos</th>
+      <td>5.06%</td>
+      <td>171.84%</td>
+      <td>8.67%</td>
+      <td>0.58</td>
+      <td>-30.56%</td>
+      <td>0.17</td>
+    </tr>
+    <tr>
+      <th>Portfolio</th>
+      <td>7.44%</td>
+      <td>327.74%</td>
+      <td>8.58%</td>
+      <td>0.87</td>
+      <td>-24.95%</td>
+      <td>0.30</td>
+    </tr>
+  </tbody>
+</table>
+    
+      
+    </div>
+</div>
+
+<div>
+	<br>
+	<br>
+	<p><strong>Nota:</strong> O portfolio "2 fundos" foi seleccionado com o
+ objectivo de ter o desvio padrão semelhante à carteira fornecida. Tem 
+83% MSCI World Net Euro e 17% Bloomberg Global-Aggregate Total Return 
+Hedged EUR.</p>
+</div>
+  
+  <!-- Container for demo purpose -->
+				</div>
+			</div></main>
+
+			<!-- End-content -->
+
+			<footer class="footer">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<a href="https://www.futureproof.pt/" class="text-muted"><strong>Future Proof</strong></a> ©
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://www.futureproof.pt/contactos">Contactos</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div><svg id="js-plotly-tester" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="position: absolute; left: -10000px; top: -10000px; width: 9000px; height: 9000px; z-index: 1;"><path class="js-reference-point" d="M0,0H1V1H0Z" style="stroke-width: 0px; fill: black;"></path></svg>
+
+	<script type="text/javascript" src="rba_files/app.js"></script><div class="notyf"></div><div class="notyf-announcer" aria-atomic="true" aria-live="polite" style="border: 0px none; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; outline: currentcolor none 0px;"></div>
+	
+	<!-- MDB -->
+	<script type="text/javascript" src="rba_files/mdb.js"></script>
+
+
+
+<svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xlink="http://www.w3.org/1999/xlink" svgjs="http://svgjs.com/svgjs" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg></body></html>

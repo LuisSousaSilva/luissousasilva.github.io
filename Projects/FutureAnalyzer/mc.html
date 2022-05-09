@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="PortfolYou">
+	<meta name="keywords" content="etf, mutual fund, analytics, data, dashboard, web, app, portfolio, tracker">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com/">
+	<link rel="shortcut icon" href="portfolio_files/icon-48x48.png">
+
+	<title>Future Proof</title>
+
+	<!-- MDB -->
+	<link rel="stylesheet" href="mc_files/mdb.css" type="text/css">
+
+	<link href="mc_files/app.css" rel="stylesheet" type="text/css">
+
+	<link href="mc_files/css2.css" rel="stylesheet">
+
+	<!-- <link rel="stylesheet" href="./static/css/mdb.min.css" rel="stylesheet" type="text/css" /> -->
+
+	<!-- Plotly -->
+	<script src="mc_files/plotly-latest.js"></script><style id="plotly.js-style-global"></style>
+	<script src="mc_files/d3.js"></script>
+
+
+    <style type="text/css">
+
+      table {
+        border: 1px solid rgba(27, 50, 153, 0);
+    }
+
+        td {
+        padding-left: 3rem;
+        padding-top: 1.5rem;
+        border-bottom: 1px solid #c9d0dd;
+        }
+
+        th {
+        padding-top: 1.5rem;
+        border-bottom: 1px solid #c9d0dd;
+        }
+
+    </style>
+
+<style id="plotly.js-style-modebar-377332"></style><style id="plotly.js-style-modebar-4f2663"></style><style type="text/css">.apexcharts-canvas {
+  position: relative;
+  user-select: none;
+  /* cannot give overflow: hidden as it will crop tooltips which overflow outside chart area */
+}
+
+
+/* scrollbar is not visible by default for legend, hence forcing the visibility */
+.apexcharts-canvas ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 6px;
+}
+
+.apexcharts-canvas ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+
+.apexcharts-inner {
+  position: relative;
+}
+
+.apexcharts-text tspan {
+  font-family: inherit;
+}
+
+.legend-mouseover-inactive {
+  transition: 0.15s ease all;
+  opacity: 0.20;
+}
+
+.apexcharts-series-collapsed {
+  opacity: 0;
+}
+
+.apexcharts-tooltip {
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px -4px #999;
+  cursor: default;
+  font-size: 14px;
+  left: 62px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 12;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-tooltip.apexcharts-active {
+  opacity: 1;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-tooltip.apexcharts-theme-light {
+  border: 1px solid #e3e3e3;
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.apexcharts-tooltip.apexcharts-theme-dark {
+  color: #fff;
+  background: rgba(30, 30, 30, 0.8);
+}
+
+.apexcharts-tooltip * {
+  font-family: inherit;
+}
+
+
+.apexcharts-tooltip-title {
+  padding: 6px;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+  background: #ECEFF1;
+  border-bottom: 1px solid #ddd;
+}
+
+.apexcharts-tooltip.apexcharts-theme-dark .apexcharts-tooltip-title {
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid #333;
+}
+
+.apexcharts-tooltip-text-value,
+.apexcharts-tooltip-text-z-value {
+  display: inline-block;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.apexcharts-tooltip-text-z-label:empty,
+.apexcharts-tooltip-text-z-value:empty {
+  display: none;
+}
+
+.apexcharts-tooltip-text-value,
+.apexcharts-tooltip-text-z-value {
+  font-weight: 600;
+}
+
+.apexcharts-tooltip-marker {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  top: 0px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.apexcharts-tooltip-series-group {
+  padding: 0 10px;
+  display: none;
+  text-align: left;
+  justify-content: left;
+  align-items: center;
+}
+
+.apexcharts-tooltip-series-group.apexcharts-active .apexcharts-tooltip-marker {
+  opacity: 1;
+}
+
+.apexcharts-tooltip-series-group.apexcharts-active,
+.apexcharts-tooltip-series-group:last-child {
+  padding-bottom: 4px;
+}
+
+.apexcharts-tooltip-series-group-hidden {
+  opacity: 0;
+  height: 0;
+  line-height: 0;
+  padding: 0 !important;
+}
+
+.apexcharts-tooltip-y-group {
+  padding: 6px 0 5px;
+}
+
+.apexcharts-tooltip-box, .apexcharts-custom-tooltip {
+  padding: 4px 8px;
+}
+
+.apexcharts-tooltip-boxPlot {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.apexcharts-tooltip-box>div {
+  margin: 4px 0;
+}
+
+.apexcharts-tooltip-box span.value {
+  font-weight: bold;
+}
+
+.apexcharts-tooltip-rangebar {
+  padding: 5px 8px;
+}
+
+.apexcharts-tooltip-rangebar .category {
+  font-weight: 600;
+  color: #777;
+}
+
+.apexcharts-tooltip-rangebar .series-name {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.apexcharts-xaxistooltip {
+  opacity: 0;
+  padding: 9px 10px;
+  pointer-events: none;
+  color: #373d3f;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+  background: #ECEFF1;
+  border: 1px solid #90A4AE;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-xaxistooltip.apexcharts-theme-dark {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+.apexcharts-xaxistooltip:after,
+.apexcharts-xaxistooltip:before {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.apexcharts-xaxistooltip:after {
+  border-color: rgba(236, 239, 241, 0);
+  border-width: 6px;
+  margin-left: -6px;
+}
+
+.apexcharts-xaxistooltip:before {
+  border-color: rgba(144, 164, 174, 0);
+  border-width: 7px;
+  margin-left: -7px;
+}
+
+.apexcharts-xaxistooltip-bottom:after,
+.apexcharts-xaxistooltip-bottom:before {
+  bottom: 100%;
+}
+
+.apexcharts-xaxistooltip-top:after,
+.apexcharts-xaxistooltip-top:before {
+  top: 100%;
+}
+
+.apexcharts-xaxistooltip-bottom:after {
+  border-bottom-color: #ECEFF1;
+}
+
+.apexcharts-xaxistooltip-bottom:before {
+  border-bottom-color: #90A4AE;
+}
+
+.apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:after {
+  border-bottom-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:before {
+  border-bottom-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-xaxistooltip-top:after {
+  border-top-color: #ECEFF1
+}
+
+.apexcharts-xaxistooltip-top:before {
+  border-top-color: #90A4AE;
+}
+
+.apexcharts-xaxistooltip-top.apexcharts-theme-dark:after {
+  border-top-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-xaxistooltip-top.apexcharts-theme-dark:before {
+  border-top-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-xaxistooltip.apexcharts-active {
+  opacity: 1;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-yaxistooltip {
+  opacity: 0;
+  padding: 4px 10px;
+  pointer-events: none;
+  color: #373d3f;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+  background: #ECEFF1;
+  border: 1px solid #90A4AE;
+}
+
+.apexcharts-yaxistooltip.apexcharts-theme-dark {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+.apexcharts-yaxistooltip:after,
+.apexcharts-yaxistooltip:before {
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.apexcharts-yaxistooltip:after {
+  border-color: rgba(236, 239, 241, 0);
+  border-width: 6px;
+  margin-top: -6px;
+}
+
+.apexcharts-yaxistooltip:before {
+  border-color: rgba(144, 164, 174, 0);
+  border-width: 7px;
+  margin-top: -7px;
+}
+
+.apexcharts-yaxistooltip-left:after,
+.apexcharts-yaxistooltip-left:before {
+  left: 100%;
+}
+
+.apexcharts-yaxistooltip-right:after,
+.apexcharts-yaxistooltip-right:before {
+  right: 100%;
+}
+
+.apexcharts-yaxistooltip-left:after {
+  border-left-color: #ECEFF1;
+}
+
+.apexcharts-yaxistooltip-left:before {
+  border-left-color: #90A4AE;
+}
+
+.apexcharts-yaxistooltip-left.apexcharts-theme-dark:after {
+  border-left-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-yaxistooltip-left.apexcharts-theme-dark:before {
+  border-left-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-yaxistooltip-right:after {
+  border-right-color: #ECEFF1;
+}
+
+.apexcharts-yaxistooltip-right:before {
+  border-right-color: #90A4AE;
+}
+
+.apexcharts-yaxistooltip-right.apexcharts-theme-dark:after {
+  border-right-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-yaxistooltip-right.apexcharts-theme-dark:before {
+  border-right-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-yaxistooltip.apexcharts-active {
+  opacity: 1;
+}
+
+.apexcharts-yaxistooltip-hidden {
+  display: none;
+}
+
+.apexcharts-xcrosshairs,
+.apexcharts-ycrosshairs {
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-xcrosshairs.apexcharts-active,
+.apexcharts-ycrosshairs.apexcharts-active {
+  opacity: 1;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-ycrosshairs-hidden {
+  opacity: 0;
+}
+
+.apexcharts-selection-rect {
+  cursor: move;
+}
+
+.svg_select_boundingRect, .svg_select_points_rot {
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.apexcharts-selection-rect + g .svg_select_boundingRect,
+.apexcharts-selection-rect + g .svg_select_points_rot {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.apexcharts-selection-rect + g .svg_select_points_l,
+.apexcharts-selection-rect + g .svg_select_points_r {
+  cursor: ew-resize;
+  opacity: 1;
+  visibility: visible;
+}
+
+.svg_select_points {
+  fill: #efefef;
+  stroke: #333;
+  rx: 2;
+}
+
+.apexcharts-svg.apexcharts-zoomable.hovering-zoom {
+  cursor: crosshair
+}
+
+.apexcharts-svg.apexcharts-zoomable.hovering-pan {
+  cursor: move
+}
+
+.apexcharts-zoom-icon,
+.apexcharts-zoomin-icon,
+.apexcharts-zoomout-icon,
+.apexcharts-reset-icon,
+.apexcharts-pan-icon,
+.apexcharts-selection-icon,
+.apexcharts-menu-icon,
+.apexcharts-toolbar-custom-icon {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  line-height: 24px;
+  color: #6E8192;
+  text-align: center;
+}
+
+.apexcharts-zoom-icon svg,
+.apexcharts-zoomin-icon svg,
+.apexcharts-zoomout-icon svg,
+.apexcharts-reset-icon svg,
+.apexcharts-menu-icon svg {
+  fill: #6E8192;
+}
+
+.apexcharts-selection-icon svg {
+  fill: #444;
+  transform: scale(0.76)
+}
+
+.apexcharts-theme-dark .apexcharts-zoom-icon svg,
+.apexcharts-theme-dark .apexcharts-zoomin-icon svg,
+.apexcharts-theme-dark .apexcharts-zoomout-icon svg,
+.apexcharts-theme-dark .apexcharts-reset-icon svg,
+.apexcharts-theme-dark .apexcharts-pan-icon svg,
+.apexcharts-theme-dark .apexcharts-selection-icon svg,
+.apexcharts-theme-dark .apexcharts-menu-icon svg,
+.apexcharts-theme-dark .apexcharts-toolbar-custom-icon svg {
+  fill: #f3f4f5;
+}
+
+.apexcharts-canvas .apexcharts-zoom-icon.apexcharts-selected svg,
+.apexcharts-canvas .apexcharts-selection-icon.apexcharts-selected svg,
+.apexcharts-canvas .apexcharts-reset-zoom-icon.apexcharts-selected svg {
+  fill: #008FFB;
+}
+
+.apexcharts-theme-light .apexcharts-selection-icon:not(.apexcharts-selected):hover svg,
+.apexcharts-theme-light .apexcharts-zoom-icon:not(.apexcharts-selected):hover svg,
+.apexcharts-theme-light .apexcharts-zoomin-icon:hover svg,
+.apexcharts-theme-light .apexcharts-zoomout-icon:hover svg,
+.apexcharts-theme-light .apexcharts-reset-icon:hover svg,
+.apexcharts-theme-light .apexcharts-menu-icon:hover svg {
+  fill: #333;
+}
+
+.apexcharts-selection-icon,
+.apexcharts-menu-icon {
+  position: relative;
+}
+
+.apexcharts-reset-icon {
+  margin-left: 5px;
+}
+
+.apexcharts-zoom-icon,
+.apexcharts-reset-icon,
+.apexcharts-menu-icon {
+  transform: scale(0.85);
+}
+
+.apexcharts-zoomin-icon,
+.apexcharts-zoomout-icon {
+  transform: scale(0.7)
+}
+
+.apexcharts-zoomout-icon {
+  margin-right: 3px;
+}
+
+.apexcharts-pan-icon {
+  transform: scale(0.62);
+  position: relative;
+  left: 1px;
+  top: 0px;
+}
+
+.apexcharts-pan-icon svg {
+  fill: #fff;
+  stroke: #6E8192;
+  stroke-width: 2;
+}
+
+.apexcharts-pan-icon.apexcharts-selected svg {
+  stroke: #008FFB;
+}
+
+.apexcharts-pan-icon:not(.apexcharts-selected):hover svg {
+  stroke: #333;
+}
+
+.apexcharts-toolbar {
+  position: absolute;
+  z-index: 11;
+  max-width: 176px;
+  text-align: right;
+  border-radius: 3px;
+  padding: 0px 6px 2px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.apexcharts-menu {
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 3px;
+  right: 10px;
+  opacity: 0;
+  min-width: 110px;
+  transition: 0.15s ease all;
+  pointer-events: none;
+}
+
+.apexcharts-menu.apexcharts-menu-open {
+  opacity: 1;
+  pointer-events: all;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-menu-item {
+  padding: 6px 7px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.apexcharts-theme-light .apexcharts-menu-item:hover {
+  background: #eee;
+}
+
+.apexcharts-theme-dark .apexcharts-menu {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .apexcharts-canvas:hover .apexcharts-toolbar {
+    opacity: 1;
+  }
+}
+
+.apexcharts-datalabel.apexcharts-element-hidden {
+  opacity: 0;
+}
+
+.apexcharts-pie-label,
+.apexcharts-datalabels,
+.apexcharts-datalabel,
+.apexcharts-datalabel-label,
+.apexcharts-datalabel-value {
+  cursor: default;
+  pointer-events: none;
+}
+
+.apexcharts-pie-label-delay {
+  opacity: 0;
+  animation-name: opaque;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+.apexcharts-canvas .apexcharts-element-hidden {
+  opacity: 0;
+}
+
+.apexcharts-hide .apexcharts-series-points {
+  opacity: 0;
+}
+
+.apexcharts-gridline,
+.apexcharts-annotation-rect,
+.apexcharts-tooltip .apexcharts-marker,
+.apexcharts-area-series .apexcharts-area,
+.apexcharts-line,
+.apexcharts-zoom-rect,
+.apexcharts-toolbar svg,
+.apexcharts-area-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+.apexcharts-line-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+.apexcharts-radar-series path,
+.apexcharts-radar-series polygon {
+  pointer-events: none;
+}
+
+
+/* markers */
+
+.apexcharts-marker {
+  transition: 0.15s ease all;
+}
+
+@keyframes opaque {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+/* Resize generated styles */
+
+@keyframes resizeanim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.resize-triggers {
+  animation: 1ms resizeanim;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.resize-triggers,
+.resize-triggers>div,
+.contract-trigger:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.resize-triggers>div {
+  background: #eee;
+  overflow: auto;
+}
+
+.contract-trigger:before {
+  width: 200%;
+  height: 200%;
+}</style><style>INPUT:-webkit-autofill,SELECT:-webkit-autofill,TEXTAREA:-webkit-autofill{animation-name:onautofillstart}INPUT:not(:-webkit-autofill),SELECT:not(:-webkit-autofill),TEXTAREA:not(:-webkit-autofill){animation-name:onautofillcancel}@keyframes onautofillstart{from{}}@keyframes onautofillcancel{from{}}
+</style></head>
+<!--
+  HOW TO USE: 
+  data-theme: default (default), dark, light
+  data-layout: fluid (default), boxed
+  data-sidebar: left (default), right
+-->
+
+<body data-theme="light" data-layout="fluid" data-sidebar="left">
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar">
+			<div class="sidebar-content js-simplebar" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">
+				<a class="sidebar-brand" href="https://www.futureproof.pt/">
+                    <img src="mc_files/logo-future-proof.svg" alt="">
+				</a>
+
+				<ul class="sidebar-nav">
+
+					<li class="sidebar-header">
+						Dashboards
+					</li>
+					<li class="sidebar-item">
+						<a data-bs-target="#Dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up align-middle"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg> <span class="align-middle">Benchmarks</span>
+						</a>
+						<ul id="Dashboards" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+							<li class="sidebar-item"><a class="sidebar-link" href="./portfolio.html">Portfolio</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="./benchmarks.html">Benchmarks</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="./activos.html">Activos</a></li>
+							
+						</ul>
+					</li>
+
+					<li class="sidebar-item">
+						<a data-bs-target="#Optimização" data-bs-toggle="collapse" class="sidebar-link collapsed">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cpu align-middle"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg> <span class="align-middle">Optimização</span>
+						</a>
+						<ul id="Optimização" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+							<li class="sidebar-item"><a class="sidebar-link" href="./mvo.html">MVO</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="./rba.html">Return-Based Analysis
+								</a></li>
+						</ul>
+					</li>
+
+					<li class="sidebar-item active">
+						<a data-bs-target="#Simulação" data-bs-toggle="collapse" class="sidebar-link collapsed">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target align-middle"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span class="align-middle">Simulação</span>
+						</a>
+						<ul id="Simulação" class="sidebar-dropdown list-unstyled collapse show" data-bs-parent="#sidebar">
+							<li class="sidebar-item active"><a class="sidebar-link" href="./mc.html">Monte-Carlo</a></li>
+						</ul>
+					</li>
+
+				</ul>
+				
+				
+
+
+			</div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 977px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div></div>
+		</nav>
+
+		<div class="main">
+
+
+			<main class="content">
+
+				
+
+
+						<!-- Container for demo purpose -->
+<div class="container-fluid" id="content">
+
+  <div class="row ">
+    <div class="col-auto d-none d-sm-block align-self-center" style="padding-left:3rem">
+      <h3><strong>Future Analyzer</strong> Simulação</h3>
+      <br>
+    </div>
+
+<!-- Tabs navs -->
+<ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+	<li class="nav-item" role="presentation">
+	  <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="tab" href="#ex1-tabs-1" role="tab" aria-controls="ex1-tabs-1" aria-selected="true">Simulação</a>
+	</li>
+	<!-- <li class="nav-item" role="presentation">
+	  <a
+		class="nav-link"
+		id="ex1-tab-2"
+		data-mdb-toggle="tab"
+		href="#ex1-tabs-2"
+		role="tab"
+		aria-controls="ex1-tabs-2"
+		aria-selected="false"
+		>Tab 2</a
+	  >
+	</li>
+	<li class="nav-item" role="presentation">
+	  <a
+		class="nav-link"
+		id="ex1-tab-3"
+		data-mdb-toggle="tab"
+		href="#ex1-tabs-3"
+		role="tab"
+		aria-controls="ex1-tabs-3"
+		aria-selected="false"
+		>Tab 3</a
+	  >
+	</li> -->
+  </ul>
+  <!-- Tabs navs -->
+  
+  <!-- Tabs content -->
+  <div class="tab-content" id="ex1-content">
+	<div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+
+	<div class="row">
+	  
+		<div class="col-9">
+		  <!-- Tab content -->
+		  <div class="tab-content" id="v-pills-tabContent">
+			<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+			  <!-- Home content -->
+
+			  <div class="row">
+				<div class="col-xxl-8">
+					<div class="d-flex justify-content-around js-plotly-plot" id="mc_chart1" type="text/javascript" style="height: 475px; width: 60vw;" "="">
+						<div class="plot-container plotly"><div class="user-select-none svg-container" style="position: relative; width: 1152px; height: 475px;"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1152" height="475" style="background: rgb(247, 247, 252) none repeat scroll 0% 0%;"><defs id="defs-377332"><g class="clips"><clipPath id="clip377332xyplot" class="plotclip"><rect width="944" height="295"></rect></clipPath><clipPath class="axesclip" id="clip377332x"><rect x="80" y="0" width="944" height="475"></rect></clipPath><clipPath class="axesclip" id="clip377332y"><rect x="0" y="100" width="1152" height="295"></rect></clipPath><clipPath class="axesclip" id="clip377332xy"><rect x="80" y="100" width="944" height="295"></rect></clipPath></g><g class="gradients"></g></defs><g class="bglayer"></g><g class="draglayer cursor-crosshair"><g class="xy"><rect class="nsewdrag drag" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="80" y="100" width="944" height="295"></rect><rect class="nwdrag drag cursor-nw-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="60" y="80" width="20" height="20"></rect><rect class="nedrag drag cursor-ne-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="1024" y="80" width="20" height="20"></rect><rect class="swdrag drag cursor-sw-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="60" y="395" width="20" height="20"></rect><rect class="sedrag drag cursor-se-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="1024" y="395" width="20" height="20"></rect><rect class="ewdrag drag cursor-ew-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="174.4" y="395.5" width="755.2" height="20"></rect><rect class="wdrag drag cursor-w-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="80" y="395.5" width="94.4" height="20"></rect><rect class="edrag drag cursor-e-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="929.6" y="395.5" width="94.4" height="20"></rect><rect class="nsdrag drag cursor-ns-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="129.5" width="20" height="236"></rect><rect class="sdrag drag cursor-s-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="365.5" width="20" height="29.5"></rect><rect class="ndrag drag cursor-n-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="100" width="20" height="29.5"></rect></g></g><g class="layer-below"><g class="imagelayer"></g><g class="shapelayer"></g></g><g class="cartesianlayer"><g class="subplot xy"><g class="layer-subplot"><g class="shapelayer"></g><g class="imagelayer"></g></g><g class="gridlayer"><g class="x"><path class="xgrid crisp" transform="translate(205.97,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(331.77,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(457.74,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(583.54,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(709.51,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(835.3,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(961.27,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path></g><g class="y"><path class="ygrid crisp" transform="translate(0,359.92)" d="M80,0h944" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,319.26)" d="M80,0h944" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,278.59000000000003)" d="M80,0h944" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,237.93)" d="M80,0h944" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,197.26999999999998)" d="M80,0h944" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,156.6)" d="M80,0h944" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,115.94)" d="M80,0h944" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path></g></g><g class="zerolinelayer"></g><path class="xlines-below"></path><path class="ylines-below"></path><g class="overlines-below"></g><g class="xaxislayer-below"></g><g class="yaxislayer-below"></g><g class="overaxes-below"></g><g class="plot" transform="translate(80,100)" clip-path="url('#clip377332xyplot')"><g class="scatterlayer mlayer"><g class="trace scatter trace2104cc" style="stroke-miterlimit: 2;"><g class="fills"><g><path class="js-fill" d="M0,280.25L125.8,265.82L188.7,257.76L314.67,240.35L377.57,230.89L503.36,210.52L566.43,199.1L629.33,187.21L692.23,174.55L818.2,147.94L881.1,133.33L944,117.56L944,155.26L881.1,166.8L818.2,177.86L755.13,188.11L692.23,198.13L566.43,216.68L503.36,225.4L377.57,241.66L314.67,249.21L125.8,269.47L62.9,275.7L0,280.25Z" style="fill: rgb(255, 0, 0); fill-opacity: 0.4; stroke-width: 0px;"></path></g></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(255, 0, 0); stroke-opacity: 1; stroke-width: 1.3px; opacity: 1;" d="M0,280.25L62.9,275.7L125.8,269.47L314.67,249.21L377.57,241.66L503.36,225.4L566.43,216.68L692.23,198.13L755.13,188.11L818.2,177.86L881.1,166.8L944,155.26"></path></g><g class="points"></g><g class="text"></g></g><g class="trace scatter trace672c66" style="stroke-miterlimit: 2;"><g class="fills"><g><path class="js-fill" d="M0,280.25L188.7,253.04L251.6,242.84L377.57,220.56L440.46,208.25L503.36,195.39L566.43,181.39L629.33,166.63L692.23,150.51L755.13,133.63L818.2,115.54L881.1,96.09L944,75.45L944,117.56L881.1,133.33L818.2,147.94L692.23,174.55L629.33,187.21L566.43,199.1L503.36,210.52L377.57,230.89L314.67,240.35L188.7,257.76L125.8,265.82L0,280.25Z" style="fill: rgb(65, 105, 225); fill-opacity: 0.6; stroke-width: 0px;"></path></g></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(65, 105, 225); stroke-opacity: 1; stroke-width: 1.3px; opacity: 1;" d="M0,280.25L125.8,265.82L188.7,257.76L314.67,240.35L377.57,230.89L503.36,210.52L566.43,199.1L629.33,187.21L692.23,174.55L818.2,147.94L881.1,133.33L944,117.56"></path></g><g class="points"></g><g class="text"></g></g><g class="trace scatter trace0b92a6" style="stroke-miterlimit: 2;"><g class="fills"><g><path class="js-fill" d="M0,280.25L188.7,247.15L251.6,234.71L314.67,221.49L377.57,207.17L440.46,191.88L503.36,175.11L566.43,156.99L629.33,137.72L692.23,116.51L755.13,93.91L818.2,69.01L881.1,41.99L944,14.75L944,75.45L881.1,96.09L818.2,115.54L755.13,133.63L692.23,150.51L629.33,166.63L566.43,181.39L503.36,195.39L440.46,208.25L377.57,220.56L251.6,242.84L188.7,253.04L0,280.25Z" style="fill: rgb(0, 128, 0); fill-opacity: 0.4; stroke-width: 0px;"></path></g></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(65, 105, 225); stroke-opacity: 1; stroke-width: 1.3px; opacity: 1;" d="M0,280.25L188.7,253.04L251.6,242.84L377.57,220.56L440.46,208.25L503.36,195.39L566.43,181.39L629.33,166.63L692.23,150.51L755.13,133.63L818.2,115.54L881.1,96.09L944,75.45"></path></g><g class="points"></g><g class="text"></g></g><g class="trace scatter trace6a73a0" style="stroke-miterlimit: 2;"><g class="fills"></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(0, 128, 0); stroke-opacity: 1; stroke-width: 1.3px; opacity: 1;" d="M0,280.25L188.7,247.15L251.6,234.71L314.67,221.49L377.57,207.17L440.46,191.88L503.36,175.11L566.43,156.99L629.33,137.72L692.23,116.51L755.13,93.91L818.2,69.01L881.1,41.99L944,14.75"></path></g><g class="points"></g><g class="text"></g></g><g class="trace scatter tracebaf8d4" style="stroke-miterlimit: 2; opacity: 1;"><g class="fills"></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(75, 0, 130); stroke-opacity: 1; stroke-width: 1.6px; opacity: 1;" d="M0,280.25L944,188.76"></path></g><g class="points"></g><g class="text"></g></g></g></g><g class="overplot"></g><path class="xlines-above crisp" style="fill: none;" d="M0,0"></path><path class="ylines-above crisp" style="fill: none;" d="M0,0"></path><g class="overlines-above"></g><g class="xaxislayer-above"><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2020" data-math="N" transform="translate(80,0)">2020</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2022" data-math="N" transform="translate(205.97,0)">2022</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2024" data-math="N" transform="translate(331.77,0)">2024</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2026" data-math="N" transform="translate(457.74,0)">2026</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2028" data-math="N" transform="translate(583.54,0)">2028</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2030" data-math="N" transform="translate(709.51,0)">2030</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2032" data-math="N" transform="translate(835.3,0)">2032</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2034" data-math="N" transform="translate(961.27,0)">2034</text></g></g><g class="yaxislayer-above"><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="0.2M€" data-math="N" transform="translate(0,359.92)">0.2M€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="0.4M€" data-math="N" transform="translate(0,319.26)">0.4M€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="0.6M€" data-math="N" transform="translate(0,278.59000000000003)">0.6M€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="0.8M€" data-math="N" transform="translate(0,237.93)">0.8M€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="1M€" data-math="N" transform="translate(0,197.26999999999998)">1M€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="1.2M€" data-math="N" transform="translate(0,156.6)">1.2M€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="1.4M€" data-math="N" transform="translate(0,115.94)">1.4M€</text></g></g><g class="overaxes-above"></g></g></g><g class="polarlayer"></g><g class="ternarylayer"></g><g class="geolayer"></g><g class="funnelarealayer"></g><g class="pielayer"></g><g class="treemaplayer"></g><g class="sunburstlayer"></g><g class="glimages"></g></svg><div class="gl-container"></div><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1152" height="475"><defs id="topdefs-377332"><g class="clips"></g><clipPath id="legend377332"><rect width="97" height="105" x="0" y="0"></rect></clipPath></defs><g class="indicatorlayer"></g><g class="layer-above"><g class="imagelayer"></g><g class="shapelayer"></g></g><g class="infolayer"><g class="legend" pointer-events="all" transform="translate(1042.88,100)"><rect class="bg" shape-rendering="crispEdges" style="stroke: rgb(68, 68, 68); stroke-opacity: 1; fill: rgb(247, 247, 252); fill-opacity: 1; stroke-width: 0px;" width="97" height="105" x="0" y="0"></rect><g class="scrollbox" transform="" clip-path="url('#legend377332')"><g class="groups"><g class="traces" style="opacity: 1;" transform="translate(0,14.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="Reforços" data-math="N">Reforços</text><g class="layers" style="opacity: 1;"><g class="legendfill"></g><g class="legendlines"><path class="js-line" d="M5,0h30" style="fill: none; stroke: rgb(75, 0, 130); stroke-opacity: 1; stroke-width: 1.6px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="91.05000305175781" height="19"></rect></g><g class="traces" style="opacity: 1;" transform="translate(0,33.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="80Q" data-math="N">80Q</text><g class="layers"><g class="legendfill"><path class="js-fill" d="M5,-2h30v6h-30z" style="stroke-width: 0px; fill: rgb(0, 128, 0); fill-opacity: 0.4;"></path></g><g class="legendlines"><path class="js-line" d="M5,-2h30" style="fill: none; stroke: rgb(0, 128, 0); stroke-opacity: 1; stroke-width: 1.3px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="91.05000305175781" height="19"></rect></g><g class="traces" style="opacity: 1;" transform="translate(0,52.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="60Q" data-math="N">60Q</text><g class="layers"><g class="legendfill"><path class="js-fill" d="M5,-2h30v6h-30z" style="stroke-width: 0px; fill: rgb(65, 105, 225); fill-opacity: 0.6;"></path></g><g class="legendlines"><path class="js-line" d="M5,-2h30" style="fill: none; stroke: rgb(65, 105, 225); stroke-opacity: 1; stroke-width: 1.3px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="91.05000305175781" height="19"></rect></g><g class="traces" style="opacity: 1;" transform="translate(0,71.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="40Q" data-math="N">40Q</text><g class="layers"><g class="legendfill"><path class="js-fill" d="M5,-2h30v6h-30z" style="stroke-width: 0px; fill: rgb(255, 0, 0); fill-opacity: 0.4;"></path></g><g class="legendlines"><path class="js-line" d="M5,-2h30" style="fill: none; stroke: rgb(65, 105, 225); stroke-opacity: 1; stroke-width: 1.3px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="91.05000305175781" height="19"></rect></g><g class="traces" style="opacity: 1;" transform="translate(0,90.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="20Q" data-math="N">20Q</text><g class="layers"><g class="legendfill"></g><g class="legendlines"><path class="js-line" d="M5,0h30" style="fill: none; stroke: rgb(255, 0, 0); stroke-opacity: 1; stroke-width: 1.3px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="91.05000305175781" height="19"></rect></g></g></g><rect class="scrollbar" rx="20" ry="3" width="0" height="0" style="fill: rgb(128, 139, 164); fill-opacity: 1;" x="0" y="0"></rect></g><g class="g-gtitle"><text class="gtitle" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 17px; fill: rgb(42, 63, 95); opacity: 1; font-weight: normal; white-space: pre;" x="576" y="50" text-anchor="middle" dy="0em" data-unformatted="Simulação de um investimento inicial de 100000 euros num período de 15 anos &lt;br&gt;(com contribuições anuais de 30k)" data-math="N"><tspan class="line" dy="0em" x="576" y="50">Simulação de um investimento inicial de 100000 euros num período de 15 anos </tspan><tspan class="line" dy="1.3em" x="576" y="50">(com contribuições anuais de 30k)</tspan></text></g><g class="g-xtitle"></g><g class="g-ytitle"></g><g class="annotation" data-index="0" style="opacity: 1;"><g class="annotation-text-g" transform="rotate(0,552,443.34999999999997)"><g class="cursor-pointer" transform="translate(383,433)"><rect class="bg" style="stroke-width: 1px; stroke: rgb(0, 0, 0); stroke-opacity: 0; fill: rgb(0, 0, 0); fill-opacity: 0;" x="0.5" y="0.5" width="338" height="19"></rect><text class="annotation-text" style="font-family: Arial; font-size: 12px; fill: rgb(150, 150, 150); fill-opacity: 1; white-space: pre;" text-anchor="middle" data-unformatted="Rentabilidade esperada: 7%, Desvio padrão esperado: 15%" data-math="N" x="169" y="14">Rentabilidade esperada: 7%, Desvio padrão esperado: 15%</text></g></g></g></g><g class="menulayer"></g><g class="zoomlayer"></g></svg><div class="modebar-container" style="position: absolute; top: 0px; right: 0px; width: 100%;"><div id="modebar-377332" class="modebar modebar--hover ease-bg"><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Download plot as a png" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m500 450c-83 0-150-67-150-150 0-83 67-150 150-150 83 0 150 67 150 150 0 83-67 150-150 150z m400 150h-120c-16 0-34 13-39 29l-31 93c-6 15-23 28-40 28h-340c-16 0-34-13-39-28l-31-94c-6-15-23-28-40-28h-120c-55 0-100-45-100-100v-450c0-55 45-100 100-100h800c55 0 100 45 100 100v450c0 55-45 100-100 100z m-400-550c-138 0-250 112-250 250 0 138 112 250 250 250 138 0 250-112 250-250 0-138-112-250-250-250z m365 380c-19 0-35 16-35 35 0 19 16 35 35 35 19 0 35-16 35-35 0-19-16-35-35-35z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn active" data-title="Zoom" data-attr="dragmode" data-val="zoom" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m1000-25l-250 251c40 63 63 138 63 218 0 224-182 406-407 406-224 0-406-182-406-406s183-406 407-406c80 0 155 22 218 62l250-250 125 125z m-812 250l0 438 437 0 0-438-437 0z m62 375l313 0 0-312-313 0 0 312z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Pan" data-attr="dragmode" data-val="pan" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m1000 350l-187 188 0-125-250 0 0 250 125 0-188 187-187-187 125 0 0-250-250 0 0 125-188-188 186-187 0 125 252 0 0-250-125 0 187-188 188 188-125 0 0 250 250 0 0-126 187 188z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Zoom in" data-attr="zoom" data-val="in" data-toggle="false" data-gravity="n"><svg viewBox="0 0 875 1000" class="icon" height="1em" width="1em"><path d="m1 787l0-875 875 0 0 875-875 0z m687-500l-187 0 0-187-125 0 0 187-188 0 0 125 188 0 0 187 125 0 0-187 187 0 0-125z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Zoom out" data-attr="zoom" data-val="out" data-toggle="false" data-gravity="n"><svg viewBox="0 0 875 1000" class="icon" height="1em" width="1em"><path d="m0 788l0-876 875 0 0 876-875 0z m688-500l-500 0 0 125 500 0 0-125z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Autoscale" data-attr="zoom" data-val="auto" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m250 850l-187 0-63 0 0-62 0-188 63 0 0 188 187 0 0 62z m688 0l-188 0 0-62 188 0 0-188 62 0 0 188 0 62-62 0z m-875-938l0 188-63 0 0-188 0-62 63 0 187 0 0 62-187 0z m875 188l0-188-188 0 0-62 188 0 62 0 0 62 0 188-62 0z m-125 188l-1 0-93-94-156 156 156 156 92-93 2 0 0 250-250 0 0-2 93-92-156-156-156 156 94 92 0 2-250 0 0-250 0 0 93 93 157-156-157-156-93 94 0 0 0-250 250 0 0 0-94 93 156 157 156-157-93-93 0 0 250 0 0 250z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Reset axes" data-attr="zoom" data-val="reset" data-toggle="false" data-gravity="n"><svg viewBox="0 0 928.6 1000" class="icon" height="1em" width="1em"><path d="m786 296v-267q0-15-11-26t-25-10h-214v214h-143v-214h-214q-15 0-25 10t-11 26v267q0 1 0 2t0 2l321 264 321-264q1-1 1-4z m124 39l-34-41q-5-5-12-6h-2q-7 0-12 3l-386 322-386-322q-7-4-13-4-7 2-12 7l-35 41q-4 5-3 13t6 12l401 334q18 15 42 15t43-15l136-114v109q0 8 5 13t13 5h107q8 0 13-5t5-13v-227l122-102q5-5 6-12t-4-13z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Toggle Spike Lines" data-attr="_cartesianSpikesEnabled" data-val="on" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="M512 409c0-57-46-104-103-104-57 0-104 47-104 104 0 57 47 103 104 103 57 0 103-46 103-103z m-327-39l92 0 0 92-92 0z m-185 0l92 0 0 92-92 0z m370-186l92 0 0 93-92 0z m0-184l92 0 0 92-92 0z" transform="matrix(1.5 0 0 -1.5 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Show closest data on hover" data-attr="hovermode" data-val="closest" data-toggle="false" data-gravity="ne"><svg viewBox="0 0 1500 1000" class="icon" height="1em" width="1em"><path d="m375 725l0 0-375-375 375-374 0-1 1125 0 0 750-1125 0z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn active" data-title="Compare data on hover" data-attr="hovermode" data-val="x" data-toggle="false" data-gravity="ne"><svg viewBox="0 0 1125 1000" class="icon" height="1em" width="1em"><path d="m187 786l0 2-187-188 188-187 0 0 937 0 0 373-938 0z m0-499l0 1-187-188 188-188 0 0 937 0 0 376-938-1z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a href="https://plotly.com/" target="_blank" data-title="Produced with Plotly" class="modebar-btn plotlyjsicon modebar-btn--logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 132" height="1em" width="1em"><defs><style>.cls-1 {fill: #3f4f75;} .cls-2 {fill: #80cfbe;} .cls-3 {fill: #fff;}</style></defs><title>plotly-logomark</title><g id="symbol"><rect class="cls-1" width="132" height="132" rx="6" ry="6"></rect><circle class="cls-2" cx="78" cy="54" r="6"></circle><circle class="cls-2" cx="102" cy="30" r="6"></circle><circle class="cls-2" cx="78" cy="30" r="6"></circle><circle class="cls-2" cx="54" cy="30" r="6"></circle><circle class="cls-2" cx="30" cy="30" r="6"></circle><circle class="cls-2" cx="30" cy="54" r="6"></circle><path class="cls-3" d="M30,72a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,30,72Z"></path><path class="cls-3" d="M78,72a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,78,72Z"></path><path class="cls-3" d="M54,48a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,0,0,54,48Z"></path><path class="cls-3" d="M102,48a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,0,0,102,48Z"></path></g></svg></a></div></div></div><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1152" height="475"><g class="hoverlayer"></g></svg></div></div><script>
+							var graphs = {"data": [{"line": {"color": "red", "width": 1.3}, "mode": "lines", "name": "20Q", "x": ["2020-01-01T00:00:00", "2020-12-31T00:00:00", "2021-12-31T00:00:00", "2022-12-31T00:00:00", "2023-12-31T00:00:00", "2024-12-31T00:00:00", "2025-12-31T00:00:00", "2026-12-31T00:00:00", "2027-12-31T00:00:00", "2028-12-31T00:00:00", "2029-12-31T00:00:00", "2030-12-31T00:00:00", "2031-12-31T00:00:00", "2032-12-31T00:00:00", "2033-12-31T00:00:00", "2034-12-31T00:00:00"], "y": [100000.0, 122402.7914891666, 153007.30903176012, 184999.14573550905, 217845.7538237566, 252651.52704075462, 289784.44132139615, 328477.6197089821, 369771.69727699284, 412686.80761522066, 457973.22750614793, 503909.84973199305, 553198.8215085572, 603616.5967538628, 657991.6555127237, 714749.1703653904], "type": "scatter"}, {"fill": "tonexty", "fillcolor": "rgba(255, 0, 0, 0.4)", "line": {"color": "royalblue", "width": 1.3}, "mode": "lines", "name": "40Q", "x": ["2020-01-01T00:00:00", "2020-12-31T00:00:00", "2021-12-31T00:00:00", "2022-12-31T00:00:00", "2023-12-31T00:00:00", "2024-12-31T00:00:00", "2025-12-31T00:00:00", "2026-12-31T00:00:00", "2027-12-31T00:00:00", "2028-12-31T00:00:00", "2029-12-31T00:00:00", "2030-12-31T00:00:00", "2031-12-31T00:00:00", "2032-12-31T00:00:00", "2033-12-31T00:00:00", "2034-12-31T00:00:00"], "y": [100000.0, 133954.15041482172, 170959.58988842418, 210604.80093274254, 251919.1216981511, 296243.62525570276, 342764.5847027657, 391540.1729442721, 442962.47776346613, 499131.14802897954, 557595.3282771354, 619887.8965680279, 684360.3987240994, 750780.8222804358, 822609.7506381281, 900165.8625978753], "type": "scatter"}, {"fill": "tonexty", "fillcolor": "rgba(65, 105, 225, 0.6)", "line": {"color": "royalblue", "width": 1.3}, "mode": "lines", "name": "60Q", "x": ["2020-01-01T00:00:00", "2020-12-31T00:00:00", "2021-12-31T00:00:00", "2022-12-31T00:00:00", "2023-12-31T00:00:00", "2024-12-31T00:00:00", "2025-12-31T00:00:00", "2026-12-31T00:00:00", "2027-12-31T00:00:00", "2028-12-31T00:00:00", "2029-12-31T00:00:00", "2030-12-31T00:00:00", "2031-12-31T00:00:00", "2032-12-31T00:00:00", "2033-12-31T00:00:00", "2034-12-31T00:00:00"], "y": [100000.0, 143360.32387418835, 187214.75660668183, 233834.0511095254, 284010.3496869516, 337063.532945313, 393559.8822603231, 454136.31367036205, 517393.7145074935, 586255.2965710291, 658862.168815035, 738122.2761552342, 821131.9485223256, 910104.3305834007, 1005804.8017560692, 1107315.9113029933], "type": "scatter"}, {"fill": "tonexty", "fillcolor": "rgba(0,128,0, 0.4)", "line": {"color": "rgb(0,128,0)", "width": 1.3}, "mode": "lines", "name": "80Q", "x": ["2020-01-01T00:00:00", "2020-12-31T00:00:00", "2021-12-31T00:00:00", "2022-12-31T00:00:00", "2023-12-31T00:00:00", "2024-12-31T00:00:00", "2025-12-31T00:00:00", "2026-12-31T00:00:00", "2027-12-31T00:00:00", "2028-12-31T00:00:00", "2029-12-31T00:00:00", "2030-12-31T00:00:00", "2031-12-31T00:00:00", "2032-12-31T00:00:00", "2033-12-31T00:00:00", "2034-12-31T00:00:00"], "y": [100000.0, 154914.16981742543, 207701.60165938607, 262800.32164759154, 324006.87970929994, 389012.8183037851, 459425.0619679767, 534622.3475119729, 617150.1736653951, 706246.3936996313, 801026.3197936054, 905341.0410828678, 1016515.2038764377, 1138984.4655637075, 1271894.1530895862, 1405857.4100911885], "type": "scatter"}, {"line": {"color": "indigo", "width": 1.6}, "mode": "lines", "name": "Refor\u00e7os", "x": ["2020-01-01T00:00:00", "2020-12-31T00:00:00", "2021-12-31T00:00:00", "2022-12-31T00:00:00", "2023-12-31T00:00:00", "2024-12-31T00:00:00", "2025-12-31T00:00:00", "2026-12-31T00:00:00", "2027-12-31T00:00:00", "2028-12-31T00:00:00", "2029-12-31T00:00:00", "2030-12-31T00:00:00", "2031-12-31T00:00:00", "2032-12-31T00:00:00", "2033-12-31T00:00:00", "2034-12-31T00:00:00"], "y": [100000, 130000, 160000, 190000, 220000, 250000, 280000, 310000, 340000, 370000, 400000, 430000, 460000, 490000, 520000, 550000], "type": "scatter"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmapgl": [{"type": "heatmapgl", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"type": "scatter", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"type": "histogram", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"bgcolor": "#E5ECF6", "angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "ternary": {"bgcolor": "#E5ECF6", "aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "#E5ECF6", "subunitcolor": "white", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "title": {"text": "Simula\u00e7\u00e3o de um investimento inicial de 100000 euros num per\u00edodo de 15 anos <br>(com contribui\u00e7\u00f5es anuais de 30k)", "x": 0.5}, "yaxis": {"tickfont": {"color": "#4D5663"}, "title": {"text": ""}, "ticksuffix": "\u20ac", "tickprefix": "", "gridcolor": "#E1E5ED", "zerolinecolor": "#E1E5ED", "showgrid": true}, "xaxis": {"tickfont": {"color": "#4D5663"}, "title": {"text": "", "font": {"color": "#4D5663"}}, "gridcolor": "#E1E5ED", "zerolinecolor": "#E1E5ED", "showgrid": true, "ticksuffix": "", "tickprefix": ""}, "paper_bgcolor": "#f7f7fc", "plot_bgcolor": "#f7f7fc", "hovermode": "x", "showlegend": true, "annotations": [{"font": {"color": "rgb(150,150,150)", "family": "Arial", "size": 12}, "showarrow": false, "text": "Rentabilidade esperada: 7%, Desvio padr\u00e3o esperado: 15%", "x": 0.5, "xanchor": "center", "xref": "paper", "y": "-0.13", "yanchor": "top", "yref": "paper"}]}};
+							Plotly.plot('mc_chart1',graphs,{});
+						</script>
+					  </div>
+				</div>
+			</div>
+		
+			<div class="row">
+		
+				<div class="col-xxl-8" style="padding-top: 3rem; padding-left: 2rem; margin-right:3%">
+		
+				<h4 class="">Sumário</h4>
+		
+				
+			<table class="dataframe" border="1">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>20Q</th>
+      <th>40Q</th>
+      <th>60Q</th>
+      <th>80Q</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CAGR</th>
+      <td>2.86%</td>
+      <td>5.06%</td>
+      <td>7.06%</td>
+      <td>9.33%</td>
+    </tr>
+    <tr>
+      <th>Return</th>
+      <td>52.73%</td>
+      <td>109.65%</td>
+      <td>178.60%</td>
+      <td>281.54%</td>
+    </tr>
+  </tbody>
+</table>
+			
+			  
+			</div>
+		</div>
+
+		<!-- <br>
+		<div class='row style="padding-left: 10rem;'>
+			<strong>Pressupostos:</strong>
+			<br>
+			<ul style="padding-left: 5rem;">
+
+			  </ul>
+		</div> -->
+<br>
+		<div class="row" style="padding-left: 1rem;" "="">
+			<strong>Pressupostos:</strong>
+			<ul style="padding-left: 5rem; padding-top:1rem;">
+				<li>As estimativas baseiam-se num retorno esperado de 8% na parte 
+accionista da carteira e 2% na parte obrigacionista. Os retornos 
+apresentados são aleatórios e derivam de uma simulação de monte-carlo,
+					que segue numa distribuição normal, com média do retorno esperado 
+no período e desvio padrão histórico.</li>
+			  </ul>
+		</div>
+
+			</div>
+			<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+			  <!-- Profile content -->
+			  <div class="row">
+				<div class="col-xxl-8">
+					<div class="d-flex justify-content-around js-plotly-plot" id="mc_deflated_chart" type="text/javascript" style="height: 475px; width: 60vw;" "="">
+						<div class="plot-container plotly"><div class="user-select-none svg-container" style="position: relative; width: 1152px; height: 475px;"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1152" height="475" style="background: rgb(247, 247, 252) none repeat scroll 0% 0%;"><defs id="defs-4f2663"><g class="clips"><clipPath id="clip4f2663xyplot" class="plotclip"><rect width="944" height="295"></rect></clipPath><clipPath class="axesclip" id="clip4f2663x"><rect x="80" y="0" width="944" height="475"></rect></clipPath><clipPath class="axesclip" id="clip4f2663y"><rect x="0" y="100" width="1152" height="295"></rect></clipPath><clipPath class="axesclip" id="clip4f2663xy"><rect x="80" y="100" width="944" height="295"></rect></clipPath></g><g class="gradients"></g></defs><g class="bglayer"></g><g class="draglayer cursor-crosshair"><g class="xy"><rect class="nsewdrag drag" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="80" y="100" width="944" height="295"></rect><rect class="nwdrag drag cursor-nw-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="60" y="80" width="20" height="20"></rect><rect class="nedrag drag cursor-ne-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="1024" y="80" width="20" height="20"></rect><rect class="swdrag drag cursor-sw-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="60" y="395" width="20" height="20"></rect><rect class="sedrag drag cursor-se-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="1024" y="395" width="20" height="20"></rect><rect class="ewdrag drag cursor-ew-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="174.4" y="395.5" width="755.2" height="20"></rect><rect class="wdrag drag cursor-w-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="80" y="395.5" width="94.4" height="20"></rect><rect class="edrag drag cursor-e-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="929.6" y="395.5" width="94.4" height="20"></rect><rect class="nsdrag drag cursor-ns-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="129.5" width="20" height="236"></rect><rect class="sdrag drag cursor-s-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="365.5" width="20" height="29.5"></rect><rect class="ndrag drag cursor-n-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="100" width="20" height="29.5"></rect></g></g><g class="layer-below"><g class="imagelayer"></g><g class="shapelayer"></g></g><g class="cartesianlayer"><g class="subplot xy"><g class="layer-subplot"><g class="shapelayer"></g><g class="imagelayer"></g></g><g class="gridlayer"><g class="x"><path class="xgrid crisp" transform="translate(205.97,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(331.77,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(457.74,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(583.54,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(709.51,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(835.3,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="xgrid crisp" transform="translate(961.27,0)" d="M0,100v295" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path></g><g class="y"><path class="ygrid crisp" transform="translate(0,352.14)" d="M80,0h944" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,295.93)" d="M80,0h944" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,239.71)" d="M80,0h944" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,183.49)" d="M80,0h944" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,127.28)" d="M80,0h944" style="stroke: rgb(225, 229, 237); stroke-opacity: 1; stroke-width: 1px;"></path></g></g><g class="zerolinelayer"></g><path class="xlines-below"></path><path class="ylines-below"></path><g class="overlines-below"></g><g class="xaxislayer-below"></g><g class="yaxislayer-below"></g><g class="overaxes-below"></g><g class="plot" transform="translate(80,100)" clip-path="url('#clip4f2663xyplot')"><g class="scatterlayer mlayer"><g class="trace scatter tracee08a16" style="stroke-miterlimit: 2;"><g class="fills"><g><path class="js-fill" d="M0,280.25L125.8,262.17L188.7,252.58L314.67,232.94L377.57,222.81L503.36,202.09L566.43,190.96L692.23,168.22L755.13,156.68L881.1,133.12L944,120.36L944,159.09L818.2,177.2L755.13,185.75L440.46,227.98L377.57,236.03L125.8,267.02L62.9,274.63L0,280.25Z" style="fill: rgb(255, 0, 0); fill-opacity: 0.4; stroke-width: 0px;"></path></g></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(255, 0, 0); stroke-opacity: 1; stroke-width: 1.3px; opacity: 1;" d="M0,280.25L62.9,274.63L125.8,267.02L377.57,236.03L440.46,227.98L755.13,185.75L818.2,177.2L944,159.09"></path></g><g class="points"></g><g class="text"></g></g><g class="trace scatter trace798bac" style="stroke-miterlimit: 2;"><g class="fills"><g><path class="js-fill" d="M0,280.25L251.6,234.61L314.67,222.55L440.46,197.23L503.36,184.24L629.33,156.44L692.23,141.5L818.2,110.61L881.1,94.1L944,77.1L944,120.36L881.1,133.12L755.13,156.68L692.23,168.22L566.43,190.96L503.36,202.09L377.57,222.81L314.67,232.94L188.7,252.58L125.8,262.17L0,280.25Z" style="fill: rgb(65, 105, 225); fill-opacity: 0.6; stroke-width: 0px;"></path></g></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(65, 105, 225); stroke-opacity: 1; stroke-width: 1.3px; opacity: 1;" d="M0,280.25L125.8,262.17L188.7,252.58L314.67,232.94L377.57,222.81L503.36,202.09L566.43,190.96L692.23,168.22L755.13,156.68L881.1,133.12L944,120.36"></path></g><g class="points"></g><g class="text"></g></g><g class="trace scatter tracee5905a" style="stroke-miterlimit: 2;"><g class="fills"><g><path class="js-fill" d="M0,280.25L62.9,265.67L125.8,252.24L188.7,238.75L251.6,224.22L377.57,193.69L440.46,177.54L566.43,142.25L629.33,123.65L755.13,83.07L818.2,60.88L944,14.75L944,77.1L881.1,94.1L818.2,110.61L692.23,141.5L629.33,156.44L503.36,184.24L440.46,197.23L314.67,222.55L251.6,234.61L0,280.25Z" style="fill: rgb(0, 128, 0); fill-opacity: 0.4; stroke-width: 0px;"></path></g></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(65, 105, 225); stroke-opacity: 1; stroke-width: 1.3px; opacity: 1;" d="M0,280.25L251.6,234.61L314.67,222.55L440.46,197.23L503.36,184.24L629.33,156.44L692.23,141.5L818.2,110.61L881.1,94.1L944,77.1"></path></g><g class="points"></g><g class="text"></g></g><g class="trace scatter trace190b35" style="stroke-miterlimit: 2;"><g class="fills"></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(0, 128, 0); stroke-opacity: 1; stroke-width: 1.3px; opacity: 1;" d="M0,280.25L62.9,265.67L125.8,252.24L188.7,238.75L251.6,224.22L377.57,193.69L440.46,177.54L566.43,142.25L629.33,123.65L755.13,83.07L818.2,60.88L944,14.75"></path></g><g class="points"></g><g class="text"></g></g><g class="trace scatter tracee760a4" style="stroke-miterlimit: 2; opacity: 1;"><g class="fills"></g><g class="errorbars"></g><g class="lines"><path class="js-line" style="vector-effect: non-scaling-stroke; fill: none; stroke: rgb(75, 0, 130); stroke-opacity: 1; stroke-width: 1.6px; opacity: 1;" d="M0,280.25L125.8,265.13L188.7,258.03L314.67,244.71L377.57,238.47L503.36,226.79L566.43,221.34L755.13,206.41L818.2,201.89L944,193.49"></path></g><g class="points"></g><g class="text"></g></g></g></g><g class="overplot"></g><path class="xlines-above crisp" style="fill: none;" d="M0,0"></path><path class="ylines-above crisp" style="fill: none;" d="M0,0"></path><g class="overlines-above"></g><g class="xaxislayer-above"><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2020" data-math="N" transform="translate(80,0)">2020</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2022" data-math="N" transform="translate(205.97,0)">2022</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2024" data-math="N" transform="translate(331.77,0)">2024</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2026" data-math="N" transform="translate(457.74,0)">2026</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2028" data-math="N" transform="translate(583.54,0)">2028</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2030" data-math="N" transform="translate(709.51,0)">2030</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2032" data-math="N" transform="translate(835.3,0)">2032</text></g><g class="xtick"><text text-anchor="middle" x="0" y="408" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="2034" data-math="N" transform="translate(961.27,0)">2034</text></g></g><g class="yaxislayer-above"><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="0.2M€" data-math="N" transform="translate(0,352.14)">0.2M€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="0.4M€" data-math="N" transform="translate(0,295.93)">0.4M€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="0.6M€" data-math="N" transform="translate(0,239.71)">0.6M€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="0.8M€" data-math="N" transform="translate(0,183.49)">0.8M€</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(77, 86, 99); fill-opacity: 1; white-space: pre;" data-unformatted="1M€" data-math="N" transform="translate(0,127.28)">1M€</text></g></g><g class="overaxes-above"></g></g></g><g class="polarlayer"></g><g class="ternarylayer"></g><g class="geolayer"></g><g class="funnelarealayer"></g><g class="pielayer"></g><g class="treemaplayer"></g><g class="sunburstlayer"></g><g class="glimages"></g></svg><div class="gl-container"></div><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1152" height="475"><defs id="topdefs-4f2663"><g class="clips"></g><clipPath id="legend4f2663"><rect width="97" height="105" x="0" y="0"></rect></clipPath></defs><g class="indicatorlayer"></g><g class="layer-above"><g class="imagelayer"></g><g class="shapelayer"></g></g><g class="infolayer"><g class="legend" pointer-events="all" transform="translate(1042.88,100)"><rect class="bg" shape-rendering="crispEdges" style="stroke: rgb(68, 68, 68); stroke-opacity: 1; fill: rgb(247, 247, 252); fill-opacity: 1; stroke-width: 0px;" width="97" height="105" x="0" y="0"></rect><g class="scrollbox" transform="" clip-path="url('#legend4f2663')"><g class="groups"><g class="traces" style="opacity: 1;" transform="translate(0,14.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="Reforços" data-math="N">Reforços</text><g class="layers" style="opacity: 1;"><g class="legendfill"></g><g class="legendlines"><path class="js-line" d="M5,0h30" style="fill: none; stroke: rgb(75, 0, 130); stroke-opacity: 1; stroke-width: 1.6px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="91.05000305175781" height="19"></rect></g><g class="traces" style="opacity: 1;" transform="translate(0,33.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="80Q" data-math="N">80Q</text><g class="layers"><g class="legendfill"><path class="js-fill" d="M5,-2h30v6h-30z" style="stroke-width: 0px; fill: rgb(0, 128, 0); fill-opacity: 0.4;"></path></g><g class="legendlines"><path class="js-line" d="M5,-2h30" style="fill: none; stroke: rgb(0, 128, 0); stroke-opacity: 1; stroke-width: 1.3px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="91.05000305175781" height="19"></rect></g><g class="traces" style="opacity: 1;" transform="translate(0,52.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="60Q" data-math="N">60Q</text><g class="layers"><g class="legendfill"><path class="js-fill" d="M5,-2h30v6h-30z" style="stroke-width: 0px; fill: rgb(65, 105, 225); fill-opacity: 0.6;"></path></g><g class="legendlines"><path class="js-line" d="M5,-2h30" style="fill: none; stroke: rgb(65, 105, 225); stroke-opacity: 1; stroke-width: 1.3px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="91.05000305175781" height="19"></rect></g><g class="traces" style="opacity: 1;" transform="translate(0,71.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="40Q" data-math="N">40Q</text><g class="layers"><g class="legendfill"><path class="js-fill" d="M5,-2h30v6h-30z" style="stroke-width: 0px; fill: rgb(255, 0, 0); fill-opacity: 0.4;"></path></g><g class="legendlines"><path class="js-line" d="M5,-2h30" style="fill: none; stroke: rgb(65, 105, 225); stroke-opacity: 1; stroke-width: 1.3px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="91.05000305175781" height="19"></rect></g><g class="traces" style="opacity: 1;" transform="translate(0,90.5)"><text class="legendtext" text-anchor="start" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(42, 63, 95); fill-opacity: 1; white-space: pre;" x="40" y="4.680000000000001" data-unformatted="20Q" data-math="N">20Q</text><g class="layers"><g class="legendfill"></g><g class="legendlines"><path class="js-line" d="M5,0h30" style="fill: none; stroke: rgb(255, 0, 0); stroke-opacity: 1; stroke-width: 1.3px;"></path></g><g class="legendsymbols"><g class="legendpoints"></g></g></g><rect class="legendtoggle" style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;" pointer-events="all" x="0" y="-9.5" width="91.05000305175781" height="19"></rect></g></g></g><rect class="scrollbar" rx="20" ry="3" width="0" height="0" style="fill: rgb(128, 139, 164); fill-opacity: 1;" x="0" y="0"></rect></g><g class="g-gtitle"><text class="gtitle" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 17px; fill: rgb(42, 63, 95); opacity: 1; font-weight: normal; white-space: pre;" x="576" y="50" text-anchor="middle" dy="0em" data-unformatted="Simulação do valor real de um inicial de 100000 euros num período de 15 anos &lt;br&gt; ajustado à inflação (com contribuições anuais de 30k)" data-math="N"><tspan class="line" dy="0em" x="576" y="50">Simulação do valor real de um inicial de 100000 euros num período de 15 anos </tspan><tspan class="line" dy="1.3em" x="576" y="50"> ajustado à inflação (com contribuições anuais de 30k)</tspan></text></g><g class="g-xtitle"></g><g class="g-ytitle"></g><g class="annotation" data-index="0" style="opacity: 1;"><g class="annotation-text-g" transform="rotate(0,552,443.34999999999997)"><g class="cursor-pointer" transform="translate(318,433)"><rect class="bg" style="stroke-width: 1px; stroke: rgb(0, 0, 0); stroke-opacity: 0; fill: rgb(0, 0, 0); fill-opacity: 0;" x="0.5" y="0.5" width="467" height="19"></rect><text class="annotation-text" style="font-family: Arial; font-size: 12px; fill: rgb(150, 150, 150); fill-opacity: 1; white-space: pre;" text-anchor="middle" data-unformatted="Rentabilidade esperada: 7%, Desvio padrão esperado: 15%, Inflação esperada: 2%" data-math="N" x="233.5" y="14">Rentabilidade esperada: 7%, Desvio padrão esperado: 15%, Inflação esperada: 2%</text></g></g></g></g><g class="menulayer"></g><g class="zoomlayer"></g></svg><div class="modebar-container" style="position: absolute; top: 0px; right: 0px; width: 100%;"><div id="modebar-4f2663" class="modebar modebar--hover ease-bg"><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Download plot as a png" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m500 450c-83 0-150-67-150-150 0-83 67-150 150-150 83 0 150 67 150 150 0 83-67 150-150 150z m400 150h-120c-16 0-34 13-39 29l-31 93c-6 15-23 28-40 28h-340c-16 0-34-13-39-28l-31-94c-6-15-23-28-40-28h-120c-55 0-100-45-100-100v-450c0-55 45-100 100-100h800c55 0 100 45 100 100v450c0 55-45 100-100 100z m-400-550c-138 0-250 112-250 250 0 138 112 250 250 250 138 0 250-112 250-250 0-138-112-250-250-250z m365 380c-19 0-35 16-35 35 0 19 16 35 35 35 19 0 35-16 35-35 0-19-16-35-35-35z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn active" data-title="Zoom" data-attr="dragmode" data-val="zoom" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m1000-25l-250 251c40 63 63 138 63 218 0 224-182 406-407 406-224 0-406-182-406-406s183-406 407-406c80 0 155 22 218 62l250-250 125 125z m-812 250l0 438 437 0 0-438-437 0z m62 375l313 0 0-312-313 0 0 312z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Pan" data-attr="dragmode" data-val="pan" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m1000 350l-187 188 0-125-250 0 0 250 125 0-188 187-187-187 125 0 0-250-250 0 0 125-188-188 186-187 0 125 252 0 0-250-125 0 187-188 188 188-125 0 0 250 250 0 0-126 187 188z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Zoom in" data-attr="zoom" data-val="in" data-toggle="false" data-gravity="n"><svg viewBox="0 0 875 1000" class="icon" height="1em" width="1em"><path d="m1 787l0-875 875 0 0 875-875 0z m687-500l-187 0 0-187-125 0 0 187-188 0 0 125 188 0 0 187 125 0 0-187 187 0 0-125z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Zoom out" data-attr="zoom" data-val="out" data-toggle="false" data-gravity="n"><svg viewBox="0 0 875 1000" class="icon" height="1em" width="1em"><path d="m0 788l0-876 875 0 0 876-875 0z m688-500l-500 0 0 125 500 0 0-125z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Autoscale" data-attr="zoom" data-val="auto" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m250 850l-187 0-63 0 0-62 0-188 63 0 0 188 187 0 0 62z m688 0l-188 0 0-62 188 0 0-188 62 0 0 188 0 62-62 0z m-875-938l0 188-63 0 0-188 0-62 63 0 187 0 0 62-187 0z m875 188l0-188-188 0 0-62 188 0 62 0 0 62 0 188-62 0z m-125 188l-1 0-93-94-156 156 156 156 92-93 2 0 0 250-250 0 0-2 93-92-156-156-156 156 94 92 0 2-250 0 0-250 0 0 93 93 157-156-157-156-93 94 0 0 0-250 250 0 0 0-94 93 156 157 156-157-93-93 0 0 250 0 0 250z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Reset axes" data-attr="zoom" data-val="reset" data-toggle="false" data-gravity="n"><svg viewBox="0 0 928.6 1000" class="icon" height="1em" width="1em"><path d="m786 296v-267q0-15-11-26t-25-10h-214v214h-143v-214h-214q-15 0-25 10t-11 26v267q0 1 0 2t0 2l321 264 321-264q1-1 1-4z m124 39l-34-41q-5-5-12-6h-2q-7 0-12 3l-386 322-386-322q-7-4-13-4-7 2-12 7l-35 41q-4 5-3 13t6 12l401 334q18 15 42 15t43-15l136-114v109q0 8 5 13t13 5h107q8 0 13-5t5-13v-227l122-102q5-5 6-12t-4-13z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Toggle Spike Lines" data-attr="_cartesianSpikesEnabled" data-val="on" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="M512 409c0-57-46-104-103-104-57 0-104 47-104 104 0 57 47 103 104 103 57 0 103-46 103-103z m-327-39l92 0 0 92-92 0z m-185 0l92 0 0 92-92 0z m370-186l92 0 0 93-92 0z m0-184l92 0 0 92-92 0z" transform="matrix(1.5 0 0 -1.5 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Show closest data on hover" data-attr="hovermode" data-val="closest" data-toggle="false" data-gravity="ne"><svg viewBox="0 0 1500 1000" class="icon" height="1em" width="1em"><path d="m375 725l0 0-375-375 375-374 0-1 1125 0 0 750-1125 0z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn active" data-title="Compare data on hover" data-attr="hovermode" data-val="x" data-toggle="false" data-gravity="ne"><svg viewBox="0 0 1125 1000" class="icon" height="1em" width="1em"><path d="m187 786l0 2-187-188 188-187 0 0 937 0 0 373-938 0z m0-499l0 1-187-188 188-188 0 0 937 0 0 376-938-1z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a href="https://plotly.com/" target="_blank" data-title="Produced with Plotly" class="modebar-btn plotlyjsicon modebar-btn--logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 132" height="1em" width="1em"><defs><style>.cls-1 {fill: #3f4f75;} .cls-2 {fill: #80cfbe;} .cls-3 {fill: #fff;}</style></defs><title>plotly-logomark</title><g id="symbol"><rect class="cls-1" width="132" height="132" rx="6" ry="6"></rect><circle class="cls-2" cx="78" cy="54" r="6"></circle><circle class="cls-2" cx="102" cy="30" r="6"></circle><circle class="cls-2" cx="78" cy="30" r="6"></circle><circle class="cls-2" cx="54" cy="30" r="6"></circle><circle class="cls-2" cx="30" cy="30" r="6"></circle><circle class="cls-2" cx="30" cy="54" r="6"></circle><path class="cls-3" d="M30,72a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,30,72Z"></path><path class="cls-3" d="M78,72a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,78,72Z"></path><path class="cls-3" d="M54,48a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,0,0,54,48Z"></path><path class="cls-3" d="M102,48a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,0,0,102,48Z"></path></g></svg></a></div></div></div><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1152" height="475"><g class="hoverlayer"></g></svg></div></div><script>
+							var graphs = {"data": [{"line": {"color": "red", "width": 1.3}, "mode": "lines", "name": "20Q", "x": ["2020-01-01T00:00:00", "2020-12-31T00:00:00", "2021-12-31T00:00:00", "2022-12-31T00:00:00", "2023-12-31T00:00:00", "2024-12-31T00:00:00", "2025-12-31T00:00:00", "2026-12-31T00:00:00", "2027-12-31T00:00:00", "2028-12-31T00:00:00", "2029-12-31T00:00:00", "2030-12-31T00:00:00", "2031-12-31T00:00:00", "2032-12-31T00:00:00", "2033-12-31T00:00:00", "2034-12-31T00:00:00"], "y": [100000.0, 120002.73675408491, 147065.8487425607, 174328.8268986938, 201255.80324937552, 228834.27219138757, 257320.2908962136, 285959.53528452467, 315596.58316453814, 345317.8594282125, 375697.5585730061, 405276.06717449555, 436193.4954993121, 466615.2619688681, 498675.4421005947, 531069.1618285584], "type": "scatter"}, {"fill": "tonexty", "fillcolor": "rgba(255, 0, 0, 0.4)", "line": {"color": "royalblue", "width": 1.3}, "mode": "lines", "name": "40Q", "x": ["2020-01-01T00:00:00", "2020-12-31T00:00:00", "2021-12-31T00:00:00", "2022-12-31T00:00:00", "2023-12-31T00:00:00", "2024-12-31T00:00:00", "2025-12-31T00:00:00", "2026-12-31T00:00:00", "2027-12-31T00:00:00", "2028-12-31T00:00:00", "2029-12-31T00:00:00", "2030-12-31T00:00:00", "2031-12-31T00:00:00", "2032-12-31T00:00:00", "2033-12-31T00:00:00", "2034-12-31T00:00:00"], "y": [100000.0, 131327.59844590363, 164321.0206540025, 198457.60768175757, 232734.32830945367, 268316.9786097978, 304365.1420429909, 340859.28289288824, 378064.2095696322, 417650.61647431395, 457422.3795704771, 498552.92359094875, 539613.5040322936, 580377.9948291255, 623435.3849914379, 668836.4953430425], "type": "scatter"}, {"fill": "tonexty", "fillcolor": "rgba(65, 105, 225, 0.6)", "line": {"color": "royalblue", "width": 1.3}, "mode": "lines", "name": "60Q", "x": ["2020-01-01T00:00:00", "2020-12-31T00:00:00", "2021-12-31T00:00:00", "2022-12-31T00:00:00", "2023-12-31T00:00:00", "2024-12-31T00:00:00", "2025-12-31T00:00:00", "2026-12-31T00:00:00", "2027-12-31T00:00:00", "2028-12-31T00:00:00", "2029-12-31T00:00:00", "2030-12-31T00:00:00", "2031-12-31T00:00:00", "2032-12-31T00:00:00", "2033-12-31T00:00:00", "2034-12-31T00:00:00"], "y": [100000.0, 140549.33713155723, 179944.97943741045, 220347.04893812092, 262381.6625024811, 305288.82665869093, 349469.9126237341, 395352.99034393474, 441590.5534464312, 490552.20655154553, 540496.4600394715, 593644.4650430649, 647456.9376619216, 703540.2487571796, 762274.3388619004, 822752.0328487842], "type": "scatter"}, {"fill": "tonexty", "fillcolor": "rgba(0,128,0, 0.4)", "line": {"color": "rgb(0,128,0)", "width": 1.3}, "mode": "lines", "name": "80Q", "x": ["2020-01-01T00:00:00", "2020-12-31T00:00:00", "2021-12-31T00:00:00", "2022-12-31T00:00:00", "2023-12-31T00:00:00", "2024-12-31T00:00:00", "2025-12-31T00:00:00", "2026-12-31T00:00:00", "2027-12-31T00:00:00", "2028-12-31T00:00:00", "2029-12-31T00:00:00", "2030-12-31T00:00:00", "2031-12-31T00:00:00", "2032-12-31T00:00:00", "2033-12-31T00:00:00", "2034-12-31T00:00:00"], "y": [100000.0, 151876.63707590726, 199636.29532812966, 247642.6126146727, 299332.2738205597, 352340.8949565052, 407956.30728668114, 465420.926341013, 526731.7308017198, 590955.3889317411, 657120.5795979366, 728132.3371171898, 801515.3011315671, 880472.03744167, 963936.8125464715, 1044572.7639612629], "type": "scatter"}, {"line": {"color": "indigo", "width": 1.6}, "mode": "lines", "name": "Refor\u00e7os", "x": ["2020-01-01T00:00:00", "2020-12-31T00:00:00", "2021-12-31T00:00:00", "2022-12-31T00:00:00", "2023-12-31T00:00:00", "2024-12-31T00:00:00", "2025-12-31T00:00:00", "2026-12-31T00:00:00", "2027-12-31T00:00:00", "2028-12-31T00:00:00", "2029-12-31T00:00:00", "2030-12-31T00:00:00", "2031-12-31T00:00:00", "2032-12-31T00:00:00", "2033-12-31T00:00:00", "2034-12-31T00:00:00"], "y": [100000.0, 127450.98039215687, 153787.00499807767, 179041.24356393848, 203245.9937258331, 226432.702457479, 248631.9870121338, 269873.65537031327, 290186.7262046379, 309599.44837288355, 328139.3199500621, 345833.10681011446, 362706.8607675619, 378785.93728922703, 394095.0127859104, 408658.1014936854], "type": "scatter"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmapgl": [{"type": "heatmapgl", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"type": "scatter", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"type": "histogram", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"bgcolor": "#E5ECF6", "angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "ternary": {"bgcolor": "#E5ECF6", "aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "#E5ECF6", "subunitcolor": "white", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "title": {"text": "Simula\u00e7\u00e3o do valor real de um inicial de 100000 euros num per\u00edodo de 15 anos <br> ajustado \u00e0 infla\u00e7\u00e3o (com contribui\u00e7\u00f5es anuais de 30k)", "x": 0.5}, "yaxis": {"tickfont": {"color": "#4D5663"}, "title": {"text": ""}, "ticksuffix": "\u20ac", "tickprefix": "", "gridcolor": "#E1E5ED", "zerolinecolor": "#E1E5ED", "showgrid": true}, "xaxis": {"tickfont": {"color": "#4D5663"}, "title": {"text": "", "font": {"color": "#4D5663"}}, "gridcolor": "#E1E5ED", "zerolinecolor": "#E1E5ED", "showgrid": true, "ticksuffix": "", "tickprefix": ""}, "paper_bgcolor": "#f7f7fc", "plot_bgcolor": "#f7f7fc", "hovermode": "x", "showlegend": true, "annotations": [{"font": {"color": "rgb(150,150,150)", "family": "Arial", "size": 12}, "showarrow": false, "text": "Rentabilidade esperada: 7%, Desvio padr\u00e3o esperado: 15%, Infla\u00e7\u00e3o esperada: 2%", "x": 0.5, "xanchor": "center", "xref": "paper", "y": "-0.13", "yanchor": "top", "yref": "paper"}]}};
+							Plotly.plot('mc_deflated_chart',graphs,{});
+						</script>
+					  </div>
+				</div>
+			</div>
+		
+			<div class="row">
+		
+				<div class="col-xxl-8" style="padding-top: 3rem; padding-left: 2rem; margin-right:3%">
+		
+				<h4 class="">Sumário</h4>
+		
+				
+			<table class="dataframe" border="1">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>20Q</th>
+      <th>40Q</th>
+      <th>60Q</th>
+      <th>80Q</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CAGR</th>
+      <td>0.85%</td>
+      <td>3.00%</td>
+      <td>4.97%</td>
+      <td>7.19%</td>
+    </tr>
+    <tr>
+      <th>Return</th>
+      <td>13.48%</td>
+      <td>55.77%</td>
+      <td>107.01%</td>
+      <td>183.49%</td>
+    </tr>
+  </tbody>
+</table>
+			
+			  
+			</div>
+		</div>
+
+		<br>
+		<div class="row" style="padding-left: 1rem;" "="">
+			<strong>Pressupostos:</strong>
+			<ul style="padding-left: 5rem; padding-top:1rem;">
+				<li>As estimativas baseiam-se num retorno esperado de 8% na parte 
+accionista da carteira e 2% na parte obrigacionista. Os retornos 
+apresentados são aleatórios e derivam de uma simulação de monte-carlo,
+					que segue numa distribuição normal, com média do retorno esperado 
+no período e desvio padrão histórico.</li>
+			  </ul>
+		</div>
+
+			</div>
+			<div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+			  Messages content
+			</div>
+		  </div>
+		  <!-- Tab content -->
+		</div>
+
+		<div class="col-1 offset-xl-1 offset-xxl-0">
+			<!-- Tab navs -->
+			<div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+			  <a class="nav-link active" id="v-pills-home-tab" data-mdb-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Nominal</a>
+			  <a class="nav-link" id="v-pills-profile-tab" data-mdb-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Real</a>
+			</div>
+			<!-- Tab navs -->
+		  </div>
+
+	  </div>
+
+
+
+
+	</div>
+
+	<div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+	  Tab 2 content
+	</div>
+
+	<div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+	  Tab 3 content
+	</div>
+
+  </div>
+  <!-- Tabs content -->
+  
+  <!-- Container for demo purpose -->
+				</div>
+			</div></main>
+
+        
+
+			<!-- End-content -->
+
+			<footer class="footer">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<a href="https://www.futureproof.pt/" class="text-muted"><strong>Future Proof</strong></a> ©
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://www.futureproof.pt/contactos">Contactos</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div><svg id="js-plotly-tester" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="position: absolute; left: -10000px; top: -10000px; width: 9000px; height: 9000px; z-index: 1;"><path class="js-reference-point" d="M0,0H1V1H0Z" style="stroke-width: 0px; fill: black;"></path></svg>
+
+	<script type="text/javascript" src="mc_files/app.js"></script><div class="notyf"></div><div class="notyf-announcer" aria-atomic="true" aria-live="polite" style="border: 0px none; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; outline: currentcolor none 0px;"></div>
+	
+	<!-- MDB -->
+	<script type="text/javascript" src="mc_files/mdb.js"></script>
+
+
+
+<svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xlink="http://www.w3.org/1999/xlink" svgjs="http://svgjs.com/svgjs" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg></body></html>

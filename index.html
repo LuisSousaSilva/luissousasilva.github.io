@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Luis Silva's Projects</title>
+  <!-- Icon -->
+  <!-- <link rel="icon" href="img/bookmark.svg" type="image/x-icon" /> -->
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+  <!-- CSS ESSENTIAL -->
+  <link rel="stylesheet" href="css/mdb.min.css" />
+  <!-- CSS PLUGINS -->
+  <!-- <link rel="stylesheet" href="plugins/css/all.min.css" /> -->
+  <!-- Custom styles -->
+  <style>
+    @media (max-width: 991px) {
+      .navbar-scroll {
+        background-color: #fff;
+      }
+
+      .navbar-scroll .navbar-brand,
+      .navbar-scroll .nav-link,
+      .navbar-scroll .fa-bars {
+        color: #4f4f4f !important;
+      }
+    }
+
+    .navbar-brand {
+      letter-spacing: 3px;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .navbar-scroll .navbar-brand,
+    .navbar-scroll .nav-link,
+    .navbar-scroll .fa-bars {
+      color: #fff;
+    }
+
+    .navbar-scroll {
+      box-shadow: none;
+    }
+
+    .navbar-scrolled {
+      box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar-scrolled .navbar-brand,
+    .navbar-scrolled .nav-link,
+    .navbar-scrolled .fa-bars {
+      color: #4f4f4f;
+    }
+
+    .navbar-scrolled {
+      background-color: #fff;
+    }
+
+    @media (max-width: 450px) {
+      #intro {
+        height: 950px !important;
+      }
+    }
+
+    @media (min-width: 550px) and (max-width: 750px) {
+      #intro {
+        height: 1100px !important;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 990px) {
+      #intro {
+        height: 600px !important;
+      }
+    }
+
+    .display-1 {
+      font-weight: 500 !important;
+      letter-spacing: 40px;
+    }
+
+    @media (min-width: 1600px) {
+      .display-1 {
+        font-size: 10rem;
+      }
+    }
+
+    img {
+      position: relative;
+    }
+
+    span {
+      position: absolute;
+
+      top: 3%;
+      left: 3%;
+    }
+
+    .hover_shadow:hover {
+      box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.3), 0 12px 40px 0 rgba(0, 0, 0, 0.28);
+      transition: all .5s ease-in-out;
+    }
+
+    .hover_zoom:hover {
+      transform: scale(1.10);
+      /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 720px) {
+      .animation {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Start your project here-->
+  <header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-scroll">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/" style="font-size: 2em;">Projects</a>
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+          data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <ul class="navbar-nav me-auto">
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="#!">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">Attractions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">Opinions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">Contact</a>
+              </li> -->
+          </ul>
+
+          <ul class="navbar-nav d-flex flex-row">
+
+            <!-- <li class="nav-item me-3 me-lg-0">
+                <a class="nav-link" href="#!">
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+              </li> -->
+
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="https://www.linkedin.com/in/lu%C3%ADssilva/" target="_blank">
+                <i class="fab fa-2x fa-linkedin"></i>
+              </a>
+            </li>
+
+            <li class="nav-item me-3 me-lg-1">
+              <a class="nav-link" href="https://github.com/LuisSousaSilva" target="_blank">
+
+                <i class="fab fa-2x fa-github"></i>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar -->
+
+    <!--Section: Design Block-->
+    <section>
+      <div id="intro" class="bg-image" style="
+            background-image: url('img/projects.jpg');
+            height: 100vh;">
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.2);">
+          <div class="container d-flex justify-content-center align-items-center h-100">
+            <div class="row align-items-center">
+              <div class="col-12">
+                <!-- <h1 class="mb-0 text-white display-1"></h1> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <!--Section: Design Block-->
+  </header>
+
+  <main>
+    <div class="container my-5">
+      <!--Section: Design Block-->
+      <section>
+        <h3 class="text-center mb-5">About me</h3>
+
+        <div class="row">
+          <div class="col-lg-5 mb-4 mb-lg-0 pb-2 pb-lg-0 pb-xl-2">
+            <img src="img/building.jpg" class="img-fluid shadow-3 rounded" alt="Building" />
+          </div>
+          <div class="col-lg-7">
+            <p class="lead mb-4">
+              With a degree in Economics (2006) and postgraduate in Finance from the Catholic University of Porto
+              (2010), I have closely followed the financial markets since he was 16 years old.
+              Later I realized that he shared the same enthusiasm for programming.
+            </p>
+            <p class="lead mb-4">
+              As a data analyst at Future Proof, I feels lucky to apply programming and data analysis
+              to the financial markets in your professional day-to-day.
+              See in Future Proof not only the possibility of being completely aligned with the client's goals but also
+              also a platform with a strong emphasis on financial education.
+            </p>
+            <p class="lead mb-4">
+              Someone who is curious about the world is passionate about knowledge, reading about the most diverse
+              topics such as physics and history.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!--Section: Design Block-->
+
+      <hr class="my-5" />
+    </div>
+
+    <div class="container-fluid my-5 ">
+      <!--Section: Design Block-->
+      <section>
+        <div class="container ">
+          <h3 class="text-center pb-5">Projects</h3>
+
+
+
+          <div class="row">
+            <div class="col-4 mb-4">
+              <a href="/Projects/FutureAnalyzer/portfolio.html" target="_blank">
+                <img src="img/future_analyzer.png" class="w-100 shadow-1-strong rounded" />
+              </a>
+              <p class="font-weight-bold mt-4 text-center">Portfolio Analyzer Tool</p>
+
+            </div>
+
+            <div class="col-4 mb-4">
+              <a href="https://www.portfolyou.io/" target="_blank">
+                <img src="img/portfolyou_io.png" alt="Lightbox image 2" class="w-100 shadow-1-strong rounded" />
+              </a>
+              <p class="font-weight-bold mt-4 text-center">Portfolio.io Web App</p>
+            </div>
+
+            <div class="col-4 mb-4">
+              <a href="/Projects/ClientReport.html" target="_blank">
+                <img src="img/reports.png" alt="Lightbox image 3" class="w-100 shadow-1-strong rounded">
+              </a>
+              <p class="font-weight-bold mt-4 text-center">Client Reports</p>
+            </div>
+
+          </div>
+
+      </section>
+      <!--Section: Design Block-->
+    </div>
+
+    <!--Section: Design Block-->
+    <section>
+      <div class="bg-image bg-fixed text-center" style="
+            background-image: url('img/building_2.jpg');
+            height: 400px;
+          ">
+        <div class="mask" style="background-color: rgba(62, 69, 81, 0.7);">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white px-5">
+              <p class="display-6 mb-5 px-5">
+                <i class="fas fa-quote-left fa-xs" aria-hidden="true"></i>
+                Luís is the best Financial Advisor I've had in more than 30 years of relationship with banking.
+                The difference with the others (previous ones) is simple: Luís knows what he says, and he only says
+                what
+                he knows. It makes all the difference.
+                <i class="fas fa-quote-right fa-xs" aria-hidden="true"></i>
+              </p>
+              <p class="lead font-italic mb-0">Rui Gonçalves</p>
+              <p class="font-italic mb-0 small">Maintenance & Investment Manager at Lusosider Aços Planos, S.A</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Section: Design Block-->
+
+  </main>
+
+  <!-- <footer class="bg-dark">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+
+      <a class="text-white" href=""></a>
+    </div>
+  </footer> -->
+  <!-- End your project here-->
+</body>
+
+<!-- MDB ESSENTIAL -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
+<!-- MDB PLUGINS -->
+<script type="text/javascript" src="plugins/js/all.min.js"></script>
+<!-- Custom scripts -->
+<script type="text/javascript"></script>
+
+</html>
