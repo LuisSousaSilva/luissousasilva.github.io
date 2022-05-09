@@ -1,0 +1,75 @@
+.container {
+    display:  flex;
+    border: 1px solid rgb(0, 0, 0);
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+  }
+
+.horizontal_card {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1.5px solid rgb(197, 197, 197);
+    border-radius: 10px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.img_horizontal_card {
+    flex: 0 25%;
+    height: 20vh;
+    margin:0.5em 1em 1em 1em;
+}
+
+.text_horizontal_card_60 {
+    flex: 0 60%;
+    flex-grow: 1;
+    border: 1px solid rgb(197, 64, 184);
+    margin: 0.5%;
+    /* height: 100%; */
+}
+
+.text_horizontal_card_90 {
+    flex: 0 50%;
+    flex-grow: 1;
+    border: 1px solid rgb(60, 47, 245);
+    margin: 0.5%;
+}
+
+.title_1{
+    font-size: 2em;
+}
+
+.center {
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    border: 1px solid green;
+    align-items: center;
+    vertical-align: top;
+
+  }
+
+.hero_60 {
+    background-image: url('../img/micro_podcast_horizontal.jpg');
+    border: 1px solid rgb(0, 0, 0);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    height: 75vh;
+
+}
+
+.vertical_align {
+    display:  flex;
+    vertical-align: bottom;
+    border: 1px solid rgb(78, 28, 85);
+}
+
+.cards_container{
+    border: 2px solid orange;
+    width: 100vw;
+    padding-left: 1vw;
+    padding-right: 25vw;
+}
